@@ -42,6 +42,20 @@ namespace BugTracker.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public ViewResult ReportDetails(int? id)
+        {
+            BugReport bugReport = reportRepository.GetBugReport(id.Value);
+
+            // bug report does not exist, show error page
+            if(bugReport == null)
+            {
+                return View("ReportNotFound", id);
+            }
+
+            return View(bugReport);
+        }
+
         // creates new user and saves to database
         [HttpPost]
         public IActionResult Create(UserCreateViewModel model)
@@ -80,7 +94,7 @@ namespace BugTracker.Controllers
                     Severity = model.Severity,
                     Category = model.Category,
                     Summary = model.Summary,
-                    Description = model.Description,
+                    Description = model.Description.Replace("\n", "<br />"),
                     PostTime = DateTime.Now
 
                 };
