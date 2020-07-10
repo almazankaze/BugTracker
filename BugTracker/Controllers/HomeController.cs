@@ -35,6 +35,12 @@ namespace BugTracker.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ViewResult ViewReports()
+        {
+            return View();
+        }
+
         // creates new user and saves to database
         [HttpPost]
         public IActionResult Create(UserCreateViewModel model)

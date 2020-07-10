@@ -371,3 +371,4 @@ C:\Users\almaz\Documents\Git\BugTrack\BugTracker\obj\Debug\netcoreapp3.1\BugTrac
 C:\Users\almaz\Documents\Git\BugTrack\BugTracker\obj\Debug\netcoreapp3.1\BugTracker.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\almaz\Documents\Git\BugTrack\BugTracker\obj\Debug\netcoreapp3.1\BugTracker.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\almaz\Documents\Git\BugTrack\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Home\CreateReport.cshtml.g.cs
+C:\Users\almaz\Documents\Git\BugTrack\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Home\ViewReports.cshtml.g.cs

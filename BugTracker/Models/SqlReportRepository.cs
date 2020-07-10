@@ -24,12 +24,12 @@ namespace BugTracker.Models
 
         public BugReport GetBugReport(int id)
         {
-            throw new NotImplementedException();
+            return context.BugReports.Find(id);
         }
 
         public IEnumerable<BugReport> GetReports()
         {
-            throw new NotImplementedException();
+            return context.BugReports;
         }
     }
 }
