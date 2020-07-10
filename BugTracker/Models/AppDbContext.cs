@@ -14,7 +14,9 @@ namespace BugTracker.Models
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<BugReport> BugReports { get; set; }
 
+        // add initial data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //modelBuilder.Seed();

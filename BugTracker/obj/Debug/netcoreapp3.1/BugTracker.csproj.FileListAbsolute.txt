@@ -370,3 +370,4 @@ C:\Users\almaz\Documents\Git\BugTrack\BugTracker\bin\Debug\netcoreapp3.1\Microso
 C:\Users\almaz\Documents\Git\BugTrack\BugTracker\obj\Debug\netcoreapp3.1\BugTracker.csproj.CoreCompileInputs.cache
 C:\Users\almaz\Documents\Git\BugTrack\BugTracker\obj\Debug\netcoreapp3.1\BugTracker.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\almaz\Documents\Git\BugTrack\BugTracker\obj\Debug\netcoreapp3.1\BugTracker.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\almaz\Documents\Git\BugTrack\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Home\CreateReport.cshtml.g.cs

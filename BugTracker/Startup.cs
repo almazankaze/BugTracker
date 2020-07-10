@@ -28,6 +28,7 @@ namespace BugTracker
             services.AddDbContextPool<AppDbContext>(options => options.UseSqlServer(_config.GetConnectionString("DbConnectionString")));
             services.AddControllersWithViews();
             services.AddScoped<IUserRepository, SqlUserRepository>();
+            services.AddScoped<IReportRepository, SqlReportRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
