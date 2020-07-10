@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<BugReport>
+
+@{
     ViewBag.Title = "Reports";
 }
 
@@ -9,4 +11,39 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Reports</h1>
     </div>
+
+    <!-- Table -->
+    <div class="container">
+        <div class="col-12 border p-3">
+            <table id="dataTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Category</th>
+                        <th>Severity</th>
+                        <th>Status</th>
+                        <th>Updated</th>
+                        <th>Summary</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var report in Model)
+                    {
+                    <tr>
+                        <th><a href="#">@report.Id</a></th>
+                        <th>@report.Category</th>
+                        <th>@report.Severity</th>
+                        <th>@report.Status</th>
+                        <th>@report.PostTime</th>
+                        <th>@report.Summary</th>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
+
+@section Scripts{
+    <script src="~/js/DataTable.js"></script>
+}

@@ -38,7 +38,8 @@ namespace BugTracker.Controllers
         [HttpGet]
         public ViewResult ViewReports()
         {
-            return View();
+            var model = reportRepository.GetReports();
+            return View(model);
         }
 
         // creates new user and saves to database
