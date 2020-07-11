@@ -13,7 +13,7 @@
     </div>
 
     <div>
-        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Update</a>
+        <a asp-controller="report" asp-action="update" asp-route-id="@Model.Id" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Update</a>
         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Delete</a>
     </div>
 
@@ -36,7 +36,7 @@
                     <td>@Model.Category</td>
                     <td>Public</td>
                     <td>@Model.PostTime</td>
-                    <td></td>
+                    <td>@Model.LastUpdate</td>
                 </tr>
 
                 <tr class="spacer">
@@ -53,7 +53,7 @@
 
                 <tr>
                     <th>Priority</th>
-                    <td></td>
+                    <td>@Model.Priority</td>
                     <th>Severity</th>
                     <td>@Model.Severity</td>
                     <th>Reproducibility</th>
@@ -62,9 +62,9 @@
 
                 <tr>
                     <th>Status</th>
-                    <td></td>
+                    <td>@Model.Status</td>
                     <th>Resolution</th>
-                    <td></td>
+                    <td>@Model.Resolution</td>
                     <td colspan="2"></td>
                 </tr>
 

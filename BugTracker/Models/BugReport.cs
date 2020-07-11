@@ -21,8 +21,11 @@ namespace BugTracker.Models
         public string Description { get; set; }
 
         public DateTime PostTime { get; set; }
+        public DateTime LastUpdate { get; set; }
         public string Status { get; set; }
+        public string Reporter { get; set; }
         public string AssignedTo { get; set; }
         public string Priority { get; set; }
+        public string Resolution { get; set; }
     }
 }

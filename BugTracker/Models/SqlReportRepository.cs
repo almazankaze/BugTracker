@@ -31,5 +31,13 @@ namespace BugTracker.Models
         {
             return context.BugReports;
         }
+
+        public BugReport Update(BugReport reportChanges)
+        {
+            var report = context.BugReports.Attach(reportChanges);
+            report.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            context.SaveChanges();
+            return reportChanges;
+        }
     }
 }

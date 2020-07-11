@@ -12,5 +12,7 @@ namespace BugTracker.Models
         IEnumerable<BugReport> GetReports();
 
         BugReport Add(BugReport bugReport);
+
+        BugReport Update(BugReport reportChanges);
     }
 }

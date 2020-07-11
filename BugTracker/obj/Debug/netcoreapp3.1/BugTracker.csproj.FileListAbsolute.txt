@@ -376,3 +376,4 @@ C:\Users\almaz\Documents\Git\BugTrack\BugTracker\obj\Debug\netcoreapp3.1\Razor\V
 C:\Users\almaz\Documents\Git\BugTrack\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Report\ReportDetails.cshtml.g.cs
 C:\Users\almaz\Documents\Git\BugTrack\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Report\ReportNotFound.cshtml.g.cs
 C:\Users\almaz\Documents\Git\BugTrack\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Report\ViewReports.cshtml.g.cs
+C:\Users\almaz\Documents\Git\BugTrack\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Report\Update.cshtml.g.cs
