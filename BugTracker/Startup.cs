@@ -6,6 +6,7 @@ using BugTracker.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,8 +27,15 @@ namespace BugTracker
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContextPool<AppDbContext>(options => options.UseSqlServer(_config.GetConnectionString("DbConnectionString")));
+
+            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            {
+                options.Password.RequiredLength = 8;
+                options.Password.RequiredUniqueChars = 3;
+                options.Password.RequireNonAlphanumeric = false;
+            }).AddEntityFrameworkStores<AppDbContext>();
+
             services.AddControllersWithViews();
-            services.AddScoped<IUserRepository, SqlUserRepository>();
             services.AddScoped<IReportRepository, SqlReportRepository>();
         }
 
@@ -45,6 +53,9 @@ namespace BugTracker
             }
 
             app.UseStaticFiles();
+
+            app.UseAuthentication();
+
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>

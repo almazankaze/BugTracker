@@ -1,9 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "IvpXn+V9Gb/kDGprS5CNgAXiFUTn6gVCGnAnrh5AqDC4s3VghBGpFoCXGv60jNhxckVNnZdXEAaaUxLpvwrKaQ==",
+  "dgSpecHash": "XcI3xLxn2xq9NRwHkvqh0OU+jivGXhSwBCpNJRmnILTAMP1lTxxYd1wG3NQRTTp1flbmKqqdEUbODel0dSghZA==",
   "success": true,
   "projectFilePath": "C:\\Users\\almaz\\Documents\\Git\\BugTrack\\BugTracker\\BugTracker.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\almaz\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.5\\microsoft.aspnetcore.cryptography.internal.3.1.5.nupkg.sha512",
+    "C:\\Users\\almaz\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.5\\microsoft.aspnetcore.cryptography.keyderivation.3.1.5.nupkg.sha512",
+    "C:\\Users\\almaz\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\3.1.5\\microsoft.aspnetcore.identity.entityframeworkcore.3.1.5.nupkg.sha512",
     "C:\\Users\\almaz\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.extensions\\3.1.5\\microsoft.aspnetcore.mvc.razor.extensions.3.1.5.nupkg.sha512",
     "C:\\Users\\almaz\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.runtimecompilation\\3.1.5\\microsoft.aspnetcore.mvc.razor.runtimecompilation.3.1.5.nupkg.sha512",
     "C:\\Users\\almaz\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\3.1.5\\microsoft.aspnetcore.razor.language.3.1.5.nupkg.sha512",
@@ -30,6 +33,8 @@
     "C:\\Users\\almaz\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\3.1.5\\microsoft.extensions.dependencyinjection.3.1.5.nupkg.sha512",
     "C:\\Users\\almaz\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\3.1.5\\microsoft.extensions.dependencyinjection.abstractions.3.1.5.nupkg.sha512",
     "C:\\Users\\almaz\\.nuget\\packages\\microsoft.extensions.dependencymodel\\3.1.5\\microsoft.extensions.dependencymodel.3.1.5.nupkg.sha512",
+    "C:\\Users\\almaz\\.nuget\\packages\\microsoft.extensions.identity.core\\3.1.5\\microsoft.extensions.identity.core.3.1.5.nupkg.sha512",
+    "C:\\Users\\almaz\\.nuget\\packages\\microsoft.extensions.identity.stores\\3.1.5\\microsoft.extensions.identity.stores.3.1.5.nupkg.sha512",
     "C:\\Users\\almaz\\.nuget\\packages\\microsoft.extensions.logging\\3.1.5\\microsoft.extensions.logging.3.1.5.nupkg.sha512",
     "C:\\Users\\almaz\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\3.1.5\\microsoft.extensions.logging.abstractions.3.1.5.nupkg.sha512",
     "C:\\Users\\almaz\\.nuget\\packages\\microsoft.extensions.options\\3.1.5\\microsoft.extensions.options.3.1.5.nupkg.sha512",

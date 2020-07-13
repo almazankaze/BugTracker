@@ -46,8 +46,6 @@ C:\Users\almaz\Documents\Git\BugTrack\BugTracker\bin\Debug\netcoreapp3.1\refs\Mi
 C:\Users\almaz\Documents\Git\BugTrack\BugTracker\bin\Debug\netcoreapp3.1\refs\Microsoft.AspNetCore.Connections.Abstractions.dll
 C:\Users\almaz\Documents\Git\BugTrack\BugTracker\bin\Debug\netcoreapp3.1\refs\Microsoft.AspNetCore.CookiePolicy.dll
 C:\Users\almaz\Documents\Git\BugTrack\BugTracker\bin\Debug\netcoreapp3.1\refs\Microsoft.AspNetCore.Cors.dll
-C:\Users\almaz\Documents\Git\BugTrack\BugTracker\bin\Debug\netcoreapp3.1\refs\Microsoft.AspNetCore.Cryptography.Internal.dll
-C:\Users\almaz\Documents\Git\BugTrack\BugTracker\bin\Debug\netcoreapp3.1\refs\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 C:\Users\almaz\Documents\Git\BugTrack\BugTracker\bin\Debug\netcoreapp3.1\refs\Microsoft.AspNetCore.DataProtection.Abstractions.dll
 C:\Users\almaz\Documents\Git\BugTrack\BugTracker\bin\Debug\netcoreapp3.1\refs\Microsoft.AspNetCore.DataProtection.dll
 C:\Users\almaz\Documents\Git\BugTrack\BugTracker\bin\Debug\netcoreapp3.1\refs\Microsoft.AspNetCore.DataProtection.Extensions.dll
@@ -126,8 +124,6 @@ C:\Users\almaz\Documents\Git\BugTrack\BugTracker\bin\Debug\netcoreapp3.1\refs\Mi
 C:\Users\almaz\Documents\Git\BugTrack\BugTracker\bin\Debug\netcoreapp3.1\refs\Microsoft.Extensions.Hosting.Abstractions.dll
 C:\Users\almaz\Documents\Git\BugTrack\BugTracker\bin\Debug\netcoreapp3.1\refs\Microsoft.Extensions.Hosting.dll
 C:\Users\almaz\Documents\Git\BugTrack\BugTracker\bin\Debug\netcoreapp3.1\refs\Microsoft.Extensions.Http.dll
-C:\Users\almaz\Documents\Git\BugTrack\BugTracker\bin\Debug\netcoreapp3.1\refs\Microsoft.Extensions.Identity.Core.dll
-C:\Users\almaz\Documents\Git\BugTrack\BugTracker\bin\Debug\netcoreapp3.1\refs\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\almaz\Documents\Git\BugTrack\BugTracker\bin\Debug\netcoreapp3.1\refs\Microsoft.Extensions.Localization.Abstractions.dll
 C:\Users\almaz\Documents\Git\BugTrack\BugTracker\bin\Debug\netcoreapp3.1\refs\Microsoft.Extensions.Localization.dll
 C:\Users\almaz\Documents\Git\BugTrack\BugTracker\bin\Debug\netcoreapp3.1\refs\Microsoft.Extensions.Logging.Configuration.dll
@@ -367,9 +363,6 @@ C:\Users\almaz\Documents\Git\BugTrack\BugTracker\bin\Debug\netcoreapp3.1\runtime
 C:\Users\almaz\Documents\Git\BugTrack\BugTracker\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\almaz\Documents\Git\BugTrack\BugTracker\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\almaz\Documents\Git\BugTrack\BugTracker\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
-C:\Users\almaz\Documents\Git\BugTrack\BugTracker\obj\Debug\netcoreapp3.1\BugTracker.csproj.CoreCompileInputs.cache
-C:\Users\almaz\Documents\Git\BugTrack\BugTracker\obj\Debug\netcoreapp3.1\BugTracker.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\almaz\Documents\Git\BugTrack\BugTracker\obj\Debug\netcoreapp3.1\BugTracker.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\almaz\Documents\Git\BugTrack\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 C:\Users\almaz\Documents\Git\BugTrack\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Shared\NotFound.cshtml.g.cs
 C:\Users\almaz\Documents\Git\BugTrack\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Report\CreateReport.cshtml.g.cs
@@ -377,3 +370,11 @@ C:\Users\almaz\Documents\Git\BugTrack\BugTracker\obj\Debug\netcoreapp3.1\Razor\V
 C:\Users\almaz\Documents\Git\BugTrack\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Report\ReportNotFound.cshtml.g.cs
 C:\Users\almaz\Documents\Git\BugTrack\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Report\ViewReports.cshtml.g.cs
 C:\Users\almaz\Documents\Git\BugTrack\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Report\Update.cshtml.g.cs
+C:\Users\almaz\Documents\Git\BugTrack\BugTracker\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\almaz\Documents\Git\BugTrack\BugTracker\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\almaz\Documents\Git\BugTrack\BugTracker\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\almaz\Documents\Git\BugTrack\BugTracker\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Core.dll
+C:\Users\almaz\Documents\Git\BugTrack\BugTracker\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\almaz\Documents\Git\BugTrack\BugTracker\obj\Debug\netcoreapp3.1\BugTracker.csproj.CoreCompileInputs.cache
+C:\Users\almaz\Documents\Git\BugTrack\BugTracker\obj\Debug\netcoreapp3.1\BugTracker.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\almaz\Documents\Git\BugTrack\BugTracker\obj\Debug\netcoreapp3.1\BugTracker.MvcApplicationPartsAssemblyInfo.cache
