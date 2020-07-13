@@ -78,7 +78,7 @@
                         <h6 class="collapse-header">Admin Menu:</h6>
                         <a class="collapse-item" asp-controller="home" asp-action="Create">Add Team Member</a>
                         <a class="collapse-item" asp-area="" asp-page="">Edit Team</a>
-                        <a class="collapse-item" asp-controller="report" asp-action="viewreports">View Issues</a>
+                        <a class="collapse-item" asp-controller="report" asp-action="viewissues">View Issues</a>
                     </div>
                 </div>
             </li>
@@ -86,7 +86,13 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-
+            <!-- Nav Item - Sign In -->
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="account" asp-action="login">
+                    <i class="fas fa-fw fa-sign-in-alt"></i>
+                    <span>Sign In</span>
+                </a>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

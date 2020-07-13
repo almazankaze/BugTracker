@@ -26,8 +26,15 @@ using BugTracker.ViewModels;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "C:\Users\almaz\Documents\Git\BugTrack\BugTracker\Views\_ViewImports.cshtml"
+using Microsoft.AspNetCore.Identity;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d38a930076e4d07b797ce42c6072fda125d412b5", @"/Views/Report/ReportNotFound.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"52cd2c7c6b5e89f2c190a8074dda3966fe06a496", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"55fb10b3d524212a23f0871bf38301056d12dd25", @"/Views/_ViewImports.cshtml")]
     public class Views_Report_ReportNotFound : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<int>
     {
         #pragma warning disable 1998

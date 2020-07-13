@@ -366,9 +366,7 @@ C:\Users\almaz\Documents\Git\BugTrack\BugTracker\bin\Debug\netcoreapp3.1\Microso
 C:\Users\almaz\Documents\Git\BugTrack\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 C:\Users\almaz\Documents\Git\BugTrack\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Shared\NotFound.cshtml.g.cs
 C:\Users\almaz\Documents\Git\BugTrack\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Report\CreateReport.cshtml.g.cs
-C:\Users\almaz\Documents\Git\BugTrack\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Report\ReportDetails.cshtml.g.cs
 C:\Users\almaz\Documents\Git\BugTrack\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Report\ReportNotFound.cshtml.g.cs
-C:\Users\almaz\Documents\Git\BugTrack\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Report\ViewReports.cshtml.g.cs
 C:\Users\almaz\Documents\Git\BugTrack\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Report\Update.cshtml.g.cs
 C:\Users\almaz\Documents\Git\BugTrack\BugTracker\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.Internal.dll
 C:\Users\almaz\Documents\Git\BugTrack\BugTracker\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
@@ -378,3 +376,8 @@ C:\Users\almaz\Documents\Git\BugTrack\BugTracker\bin\Debug\netcoreapp3.1\Microso
 C:\Users\almaz\Documents\Git\BugTrack\BugTracker\obj\Debug\netcoreapp3.1\BugTracker.csproj.CoreCompileInputs.cache
 C:\Users\almaz\Documents\Git\BugTrack\BugTracker\obj\Debug\netcoreapp3.1\BugTracker.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\almaz\Documents\Git\BugTrack\BugTracker\obj\Debug\netcoreapp3.1\BugTracker.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\almaz\Documents\Git\BugTrack\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Account\Register.cshtml.g.cs
+C:\Users\almaz\Documents\Git\BugTrack\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Home\DashBoard.cshtml.g.cs
+C:\Users\almaz\Documents\Git\BugTrack\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
+C:\Users\almaz\Documents\Git\BugTrack\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Report\IssueDetails.cshtml.g.cs
+C:\Users\almaz\Documents\Git\BugTrack\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Report\ViewIssues.cshtml.g.cs

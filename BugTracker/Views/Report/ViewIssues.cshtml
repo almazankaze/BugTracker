@@ -30,7 +30,7 @@
                     @foreach (var report in Model)
                     {
                         <tr>
-                            <th><a asp-controller="report" asp-action="reportdetails" asp-route-id="@report.Id">@report.Id</a></th>
+                            <th><a asp-controller="report" asp-action="issuedetails" asp-route-id="@report.Id">@report.Id</a></th>
                             <th>@report.Category</th>
                             <th>@report.Severity</th>
                             <th>@report.Status</th>

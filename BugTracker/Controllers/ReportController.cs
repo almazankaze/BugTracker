@@ -24,14 +24,14 @@ namespace BugTracker.Controllers
         }
 
         [HttpGet]
-        public ViewResult ViewReports()
+        public ViewResult ViewIssues()
         {
             var model = reportRepository.GetReports();
             return View(model);
         }
 
         [HttpGet]
-        public ViewResult ReportDetails(int? id)
+        public ViewResult IssueDetails(int? id)
         {
             BugReport bugReport = reportRepository.GetBugReport(id.Value);
 
@@ -113,7 +113,7 @@ namespace BugTracker.Controllers
 
                 // update report in database
                 reportRepository.Update(bugReport);
-                return RedirectToAction("reportDetails", new { id = model.Id });
+                return RedirectToAction("issueDetails", new { id = model.Id });
         }
     }
 }
