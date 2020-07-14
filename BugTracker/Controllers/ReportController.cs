@@ -31,7 +31,29 @@ namespace BugTracker.Controllers
         }
 
         [HttpGet]
+        public ViewResult ViewReports()
+        {
+            var model = reportRepository.GetReports();
+            return View(model);
+        }
+
+        [HttpGet]
         public ViewResult IssueDetails(int? id)
+        {
+            BugReport bugReport = reportRepository.GetBugReport(id.Value);
+
+            // bug report does not exist, show error page
+            if (bugReport == null)
+            {
+                Response.StatusCode = 404;
+                return View("ReportNotFound", id);
+            }
+
+            return View(bugReport);
+        }
+
+        [HttpGet]
+        public ViewResult ReportDetails(int? id)
         {
             BugReport bugReport = reportRepository.GetBugReport(id.Value);
 

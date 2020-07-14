@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<BugReport>
 
 @{
-    ViewBag.Title = "Issues";
+    ViewBag.Title = "View Reports";
 }
 
 <!-- Begin Page Content -->
@@ -20,23 +20,21 @@
                     <tr>
                         <th>Id</th>
                         <th>Category</th>
-                        <th>Severity</th>
-                        <th>Status</th>
-                        <th>Updated</th>
                         <th>Summary</th>
+                        <th>Updated</th>
+                        <th>Resolution</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var report in Model)
                     {
-                        <tr>
-                            <th><a asp-controller="report" asp-action="issuedetails" asp-route-id="@report.Id">@report.Id</a></th>
-                            <th>@report.Category</th>
-                            <th>@report.Severity</th>
-                            <th>@report.Status</th>
-                            <th>@report.LastUpdate</th>
-                            <th>@report.Summary</th>
-                        </tr>
+                    <tr>
+                        <th><a asp-controller="report" asp-action="issuedetails" asp-route-id="@report.Id">@report.Id</a></th>
+                        <th>@report.Category</th>
+                        <th>@report.Summary</th>
+                        <th>@report.LastUpdate</th>
+                        <th>@report.Resolution</th>
+                    </tr>
                     }
                 </tbody>
             </table>
