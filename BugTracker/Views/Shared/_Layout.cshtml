@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@inject SignInManager<ApplicationUser> signInManager;
+
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -8,6 +10,8 @@
         <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
         <link href="~/lib/bootstrap-admin/css/sb-admin-2.css" rel="stylesheet" />
         <script src="~/lib/jquery/jquery.js"></script>
+        <script src="~/lib/jquery-validate/jquery.validate.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
         <script src="~/lib/bootstrap/js/bootstrap.js"></script>
         <script src="~/lib/bootstrap-admin/js/sb-admin-2.js"></script>
     </environment>
@@ -67,8 +71,9 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Nav Item - Sign In -->
+            <!-- Nav Item - View Reports -->
             <li class="nav-item">
+
                 <a class="nav-link" asp-controller="report" asp-action="viewReports">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>View Reports</span>
@@ -95,18 +100,29 @@
             <hr class="sidebar-divider">
 
             <!-- Nav Item - Sign In -->
-            <li class="nav-item">
-                <a class="nav-link" asp-controller="account" asp-action="login">
-                    <i class="fas fa-fw fa-sign-in-alt"></i>
-                    <span>Sign In</span>
-                </a>
-            </li>
+            @if (signInManager.IsSignedIn(User))
+            {
+                <li class="nav-item">
+                    <form method="post" asp-controller="account" asp-action="logout">
+                        <button type="submit" style="width:auto" class="nav-link btn btn-link">
+                            <i class="fas fa-fw fa-sign-out-alt"></i>
+                            <span>Logout</span>
+                        </button>
+                    </form>
+                </li>
+            }
+            else
+            {
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="account" asp-action="login">
+                        <i class="fas fa-fw fa-sign-in-alt"></i>
+                        <span>Sign In</span>
+                    </a>
+                </li>
+            }
 
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
         </ul>
         <!-- End of Sidebar -->
-
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 

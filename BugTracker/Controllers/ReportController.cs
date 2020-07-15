@@ -4,10 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using BugTracker.Models;
 using BugTracker.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BugTracker.Controllers
 {
+    //[Authorize]
     public class ReportController : Controller
     {
         private readonly IReportRepository reportRepository;
@@ -95,8 +97,8 @@ namespace BugTracker.Controllers
                     LastUpdate = DateTime.Now,
                     Priority = "None",
                     Status = "Created",
-                    Resolution = "None"
-
+                    Resolution = "None",
+                    Organization = "Google"
                 };
 
                 // add new employee to database
