@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BugTracker.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class ReportController : Controller
     {
         private readonly IReportRepository reportRepository;

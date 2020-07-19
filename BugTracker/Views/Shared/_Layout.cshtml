@@ -68,33 +68,42 @@
                 </a>
             </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
+            <!-- Only display this if user is logged in -->
+            @if (signInManager.IsSignedIn(User)) { 
 
-            <!-- Nav Item - View Reports -->
-            <li class="nav-item">
+                <!-- Divider -->
+                <hr class="sidebar-divider">
 
-                <a class="nav-link" asp-controller="report" asp-action="viewReports">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>View Reports</span>
-                </a>
-            </li>
+                <!-- Nav Item - View Reports -->
+                <li class="nav-item">
 
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Access Control</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Admin Menu:</h6>
-                        <a class="collapse-item" asp-controller="home" asp-action="create">Add Team Member</a>
-                        <a class="collapse-item" asp-controller="administration" asp-action="roleslist">Manage Team</a>
-                        <a class="collapse-item" asp-controller="report" asp-action="viewissues">View Issues</a>
+                    <a class="nav-link" asp-controller="report" asp-action="viewReports">
+                        <i class="fas fa-fw fa-folder"></i>
+                        <span>View Reports</span>
+                    </a>
+                </li>
+            }
+
+            <!-- Only create this link if user is an admin -->
+            @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+            {
+
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                        <i class="fas fa-fw fa-cog"></i>
+                        <span>Access Control</span>
+                    </a>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Admin Menu:</h6>
+                            <a class="collapse-item" asp-controller="home" asp-action="create">Add Team Member</a>
+                            <a class="collapse-item" asp-controller="administration" asp-action="roleslist">Manage Team</a>
+                            <a class="collapse-item" asp-controller="report" asp-action="viewissues">View Issues</a>
+                        </div>
                     </div>
-                </div>
-            </li>
+                </li>
+            }
 
             <!-- Divider -->
             <hr class="sidebar-divider">
