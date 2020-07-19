@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\almaz\\Documents\\Git\\BugTrack\\BugTracker\\BugTracker.csproj": {}
+    "C:\\Users\\almaz\\Documents\\Git\\BugProject\\BugTracker\\BugTracker.csproj": {}
   },
   "projects": {
-    "C:\\Users\\almaz\\Documents\\Git\\BugTrack\\BugTracker\\BugTracker.csproj": {
+    "C:\\Users\\almaz\\Documents\\Git\\BugProject\\BugTracker\\BugTracker.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\almaz\\Documents\\Git\\BugTrack\\BugTracker\\BugTracker.csproj",
+        "projectUniqueName": "C:\\Users\\almaz\\Documents\\Git\\BugProject\\BugTracker\\BugTracker.csproj",
         "projectName": "BugTracker",
-        "projectPath": "C:\\Users\\almaz\\Documents\\Git\\BugTrack\\BugTracker\\BugTracker.csproj",
+        "projectPath": "C:\\Users\\almaz\\Documents\\Git\\BugProject\\BugTracker\\BugTracker.csproj",
         "packagesPath": "C:\\Users\\almaz\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\almaz\\Documents\\Git\\BugTrack\\BugTracker\\obj\\",
+        "outputPath": "C:\\Users\\almaz\\Documents\\Git\\BugProject\\BugTracker\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\almaz\\AppData\\Roaming\\NuGet\\NuGet.Config",

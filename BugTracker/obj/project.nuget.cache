@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "XcI3xLxn2xq9NRwHkvqh0OU+jivGXhSwBCpNJRmnILTAMP1lTxxYd1wG3NQRTTp1flbmKqqdEUbODel0dSghZA==",
+  "dgSpecHash": "O6aOo0XaSbruVFgMhKlo/BRJd/UpPPrgyScdCcO5GDgJ95MxOfosVeoFl0n8p3Ih184+jNHAHlEDZby+PXZePg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\almaz\\Documents\\Git\\BugTrack\\BugTracker\\BugTracker.csproj",
+  "projectFilePath": "C:\\Users\\almaz\\Documents\\Git\\BugProject\\BugTracker\\BugTracker.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\almaz\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.5\\microsoft.aspnetcore.cryptography.internal.3.1.5.nupkg.sha512",
     "C:\\Users\\almaz\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.5\\microsoft.aspnetcore.cryptography.keyderivation.3.1.5.nupkg.sha512",
