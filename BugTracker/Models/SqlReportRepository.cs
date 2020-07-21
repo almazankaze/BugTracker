@@ -39,5 +39,18 @@ namespace BugTracker.Models
             context.SaveChanges();
             return reportChanges;
         }
+
+        public BugReport Delete(int Id)
+        {
+            BugReport report = context.BugReports.Find(Id);
+
+            if (report != null)
+            {
+                context.BugReports.Remove(report);
+                context.SaveChanges();
+            }
+
+            return report;
+        }
     }
 }

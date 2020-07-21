@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using BugTracker.Models;
 using BugTracker.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BugTracker.Controllers
@@ -13,10 +14,12 @@ namespace BugTracker.Controllers
     public class ReportController : Controller
     {
         private readonly IReportRepository reportRepository;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public ReportController(IReportRepository reportRepository)
+        public ReportController(IReportRepository reportRepository, UserManager<ApplicationUser> userManager)
         {
             this.reportRepository = reportRepository;
+            this.userManager = userManager;
         }
 
         [HttpGet]
@@ -81,11 +84,16 @@ namespace BugTracker.Controllers
 
         // creates new report and saves to database
         [HttpPost]
-        public IActionResult CreateReport(ReportCreateViewModel model)
+        public async Task<IActionResult> CreateReport(ReportCreateViewModel model)
         {
 
             if (ModelState.IsValid)
             {
+                // get id of current logged in user
+                var userId = userManager.GetUserId(HttpContext.User);
+
+                // get info of the user
+                var user = await userManager.FindByIdAsync(userId);
 
                 BugReport newReport = new BugReport
                 {
@@ -95,10 +103,11 @@ namespace BugTracker.Controllers
                     Description = model.Description.Replace("\n", "<br />"),
                     PostTime = DateTime.Now,
                     LastUpdate = DateTime.Now,
+                    Reporter = user.FirstName + " " + user.LastName,
                     Priority = "None",
                     Status = "Created",
-                    Resolution = "None",
-                    Organization = "Google"
+                    Resolution = "Open",
+                    Organization = user.Organization
                 };
 
                 // add new employee to database
@@ -113,7 +122,6 @@ namespace BugTracker.Controllers
         public IActionResult Update(ReportUpdateViewModel model)
         {
 
-
                 BugReport bugReport = reportRepository.GetBugReport(model.Id);
                 bugReport.LastUpdate = DateTime.Now;
                 bugReport.Priority = model.Priority;
@@ -123,6 +131,20 @@ namespace BugTracker.Controllers
                 // update report in database
                 reportRepository.Update(bugReport);
                 return RedirectToAction("issueDetails", new { id = model.Id });
+        }
+
+        [HttpPost]
+        public IActionResult DeleteReport(BugReport model)
+        {
+            var report = reportRepository.Delete(model.Id);
+
+            if(report == null)
+            {
+                ViewBag.ErrorMessage = $"Report with Id = {model.Id} cannot be found";
+                return View("NotFound");
+            }
+
+            return RedirectToAction("viewissues");
         }
     }
 }

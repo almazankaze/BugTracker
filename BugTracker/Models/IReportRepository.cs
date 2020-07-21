@@ -14,5 +14,7 @@ namespace BugTracker.Models
         BugReport Add(BugReport bugReport);
 
         BugReport Update(BugReport reportChanges);
+
+        BugReport Delete(int Id);
     }
 }
