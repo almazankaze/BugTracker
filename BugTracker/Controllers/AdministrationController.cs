@@ -63,6 +63,13 @@ namespace BugTracker.Controllers
             return View(roles);
         }
 
+        [HttpGet]
+        public IActionResult ListUsers()
+        {
+            var users = userManager.Users;
+            return View(users);
+        }
+
         // Role ID is passed from the URL to the action
         [HttpGet]
         public async Task<IActionResult> EditRole(string id)
@@ -206,7 +213,7 @@ namespace BugTracker.Controllers
                 }
             }
 
-            return RedirectToAction("rditrole", new { Id = roleId });
+            return RedirectToAction("editrole", new { Id = roleId });
         }
     }
 }

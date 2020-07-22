@@ -32,5 +32,7 @@ namespace BugTracker.ViewModels
 
         [Required(ErrorMessage = "Last Name is required")]
         public string LastName { get; set; }
+
+        public string TeamOwner { get; set; }
     }
 }

@@ -62,7 +62,8 @@ namespace BugTracker.Controllers
                     Email = model.Email,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
-                    Organization = model.Organization
+                    Organization = model.Organization,
+                    TeamOwner = model.Email
                 };
 
                 // Store user data in AspNetUsers database table
