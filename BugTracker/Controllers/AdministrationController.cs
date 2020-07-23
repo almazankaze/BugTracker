@@ -216,5 +216,68 @@ namespace BugTracker.Controllers
 
             return RedirectToAction("editrole", new { Id = roleId });
         }
+
+        public IActionResult AddUser()
+        {
+            return View();
+        }
+
+        [AcceptVerbs("Get", "Post")]
+        public async Task<IActionResult> IsEmailInUse(string email)
+        {
+            var user = await userManager.FindByEmailAsync(email);
+
+            if (user == null)
+            {
+                return Json(true);
+            }
+            else
+            {
+                return Json($"Email {email} is already in use.");
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddUser(AddUserViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+
+                // get id of current logged in user
+                var userId = userManager.GetUserId(HttpContext.User);
+
+                // get info of the user
+                var loggedInUser = await userManager.FindByIdAsync(userId);
+
+                // Copy data from AddUserViewModel to IdentityUser
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email.Substring(0, model.Email.IndexOf('@')),
+                    Email = model.Email,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Organization = loggedInUser.Organization,
+                    TeamOwner = loggedInUser.TeamOwner
+                };
+
+                // Store user data in AspNetUsers database table
+                var result = await userManager.CreateAsync(user, model.Password);
+
+                // If user is successfully created, redirect to list of users
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("listusers", "administration");
+                }
+
+                // If there are any errors, add them to the ModelState object
+                // which will be displayed by the validation summary tag helper
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+            }
+
+            return View(model);
+        }
     }
 }
