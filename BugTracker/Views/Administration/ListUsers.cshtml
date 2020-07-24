@@ -13,7 +13,7 @@
     @if (Model.Any())
     {
         <a asp-action="adduser" asp-controller="administration"
-            class="btn btn-primary mb-3" style="width:auto">
+           class="btn btn-primary mb-3" style="width:auto">
             Add new user
         </a>
 
@@ -27,7 +27,20 @@
                     <h5 class="card-title">User Id : @user.Id</h5>
                 </div>
                 <div class="card-footer">
+                    <form asp-action="DeleteUser" asp-route-id="@user.Id" method="post">
 
+                        <span id="confirmDeleteSpan_@user.Id" style="display:none">
+                            <span>Are you sure you want to delete?</span>
+                            <button type="submit" class="btn btn-danger">Yes</button>
+                            <a href="#" class="btn btn-primary"
+                               onclick="confirmDelete('@user.Id', false)">No</a>
+                        </span>
+
+                        <span id="deleteSpan_@user.Id">
+                            <a href="#" class="btn btn-danger"
+                               onclick="confirmDelete('@user.Id', true)">Delete</a>
+                        </span>
+                    </form>
                 </div>
             </div>
         }
@@ -43,10 +56,14 @@
                     Use the button below to create a user
                 </h5>
                 <a class="btn btn-primary" style="width:auto"
-                    asp-controller="administration" asp-action="adduser">
+                   asp-controller="administration" asp-action="adduser">
                     Add new user
                 </a>
             </div>
         </div>
     }
 </div>
+
+@section Scripts {
+    <script src="~/js/CustomScript.js"></script>
+}
