@@ -1,6 +1,10 @@
 ﻿
 @model List<UserAssignViewModel>
 
+@{
+    var reportId = ViewBag.reportId;
+}
+
 <div class="container" style="padding:20px; width:80%; margin:auto">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -26,8 +30,10 @@
                 }
             </div>
             <div class="card-footer">
-                <input type="submit" value="Update" class="btn btn-primary"
+                <input type="submit" value="Assign" class="btn btn-primary"
                        style="width:auto" />
+                <a asp-controller="report" asp-action="update" asp-route-id="@reportId"
+                   class="btn btn-primary" style="width:auto">Cancel</a>
             </div>
         </div>
     </form>

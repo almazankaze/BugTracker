@@ -311,8 +311,10 @@ namespace BugTracker.Controllers
         }
 
         [HttpGet]
-        public IActionResult AssignBug(int reportId)
+        public IActionResult AssignBug(int id)
         {
+            // store id of report
+            ViewBag.reportId = id;
 
             var model = new List<UserAssignViewModel>();
 
@@ -328,6 +330,32 @@ namespace BugTracker.Controllers
             }
 
             return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AssignBug(List<UserAssignViewModel> model, int id)
+        {
+            var bugReport = reportRepository.GetBugReport(id);
+
+
+            if (bugReport == null)
+            {
+                ViewBag.ErrorMessage = $"Report with Id = {id} cannot be found";
+                return View("NotFound");
+            }
+
+            for (int i = 0; i < model.Count; i++)
+            {
+                var user = await userManager.FindByIdAsync(model[i].UserId);
+
+                if (model[i].IsSelected)
+                {
+                    bugReport.AssignedTo = user.FirstName + user.LastName;
+                    break;
+                }
+            }
+
+            return RedirectToAction("update", "report", new { Id = id });
         }
     }
 }
