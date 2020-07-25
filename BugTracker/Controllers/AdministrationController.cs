@@ -15,11 +15,13 @@ namespace BugTracker.Controllers
     {
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly IReportRepository reportRepository;
 
-        public AdministrationController(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager)
+        public AdministrationController(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager, IReportRepository reportRepository)
         {
             this.roleManager = roleManager;
             this.userManager = userManager;
+            this.reportRepository = reportRepository;
         }
 
         [HttpGet]
@@ -306,6 +308,26 @@ namespace BugTracker.Controllers
 
                 return View("ListUsers");
             }
+        }
+
+        [HttpGet]
+        public IActionResult AssignBug(int reportId)
+        {
+
+            var model = new List<UserAssignViewModel>();
+
+            foreach (var user in userManager.Users)
+            {
+                var userAssignViewModel = new UserAssignViewModel
+                {
+                    UserId = user.Id,
+                    UserName = user.UserName
+                };
+
+                model.Add(userAssignViewModel);
+            }
+
+            return View(model);
         }
     }
 }
