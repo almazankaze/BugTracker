@@ -60,7 +60,7 @@ namespace BugTracker.Controllers
                 // Copy data from RegisterViewModel to IdentityUser
                 var user = new ApplicationUser
                 {
-                    UserName = model.Email.Substring(0, model.Email.IndexOf('@')),
+                    UserName = model.Email, // .Substring(0, model.Email.IndexOf('@')),
                     Email = model.Email,
                     FirstName = model.FirstName,
                     LastName = model.LastName,

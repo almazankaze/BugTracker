@@ -42,6 +42,7 @@ namespace BugTracker.Controllers
             return View(model);
         }
 
+        // get all the details of a report
         [HttpGet]
         public ViewResult IssueDetails(int? id)
         {
@@ -57,7 +58,6 @@ namespace BugTracker.Controllers
             return View(bugReport);
         }
 
-        // get all the details of a report
         [HttpGet]
         public ViewResult Update(int id)
         {

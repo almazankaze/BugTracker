@@ -34,6 +34,7 @@ namespace BugTracker
                 options.Password.RequiredLength = 8;
                 options.Password.RequiredUniqueChars = 3;
                 options.Password.RequireNonAlphanumeric = true;
+                options.SignIn.RequireConfirmedAccount = false;
             }).AddEntityFrameworkStores<AppDbContext>();
 
             services.AddControllersWithViews();

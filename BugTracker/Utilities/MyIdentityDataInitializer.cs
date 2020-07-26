@@ -17,15 +17,15 @@ namespace BugTracker.Utilities
 
         public static void SeedUsers(UserManager<ApplicationUser> userManager)
         {
-            if (userManager.FindByNameAsync("user1").Result == null)
+            if (userManager.FindByNameAsync("firstuser").Result == null)
             {
                 ApplicationUser user = new ApplicationUser();
-                user.UserName = "user1";
-                user.Email = "user1@localhost";
+                user.UserName = "firstuser@test.com";
+                user.Email = "firstuser@test.com";
                 user.FirstName = "John";
                 user.LastName = "Almazan";
                 user.Organization = "Face";
-                user.TeamOwner = "user1@localhost";
+                user.TeamOwner = "firstuser@test.com";
 
                 IdentityResult result = userManager.CreateAsync
                 (user, "1234_Test").Result;

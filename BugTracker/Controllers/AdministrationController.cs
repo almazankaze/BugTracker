@@ -66,9 +66,16 @@ namespace BugTracker.Controllers
         }
 
         [HttpGet]
-        public IActionResult ListUsers()
+        public async Task<IActionResult> ListUsers()
         {
-            var users = userManager.Users;
+            // get id of current logged in user
+            var userId = userManager.GetUserId(HttpContext.User);
+
+            // get info of the user
+            var loggedInUser = await userManager.FindByIdAsync(userId);
+
+            // only retrieve users of the same team
+            var users = userManager.Users.Where(user => user.UserName != loggedInUser.UserName && user.Organization == loggedInUser.Organization && user.TeamOwner == loggedInUser.UserName).ToList();
             return View(users);
         }
 
@@ -91,8 +98,16 @@ namespace BugTracker.Controllers
                 RoleName = role.Name
             };
 
+            // get id of current logged in user
+            var userId = userManager.GetUserId(HttpContext.User);
+
+            // get info of the user
+            var loggedInUser = await userManager.FindByIdAsync(userId);
+
+            var users = userManager.Users.Where(user => user.Organization == loggedInUser.Organization && user.TeamOwner == loggedInUser.UserName).ToList();
+
             // Retrieve all the Users
-            foreach (var user in userManager.Users)
+            foreach (var user in users)
             {
                 // If the user is in this role, add the username to
                 // Users property of EditRoleViewModel. This model
@@ -153,7 +168,15 @@ namespace BugTracker.Controllers
 
             var model = new List<UserRoleViewModel>();
 
-            foreach (var user in userManager.Users)
+            // get id of current logged in user
+            var userId = userManager.GetUserId(HttpContext.User);
+
+            // get info of the user
+            var loggedInUser = await userManager.FindByIdAsync(userId);
+
+            var users = userManager.Users.Where(user => user.UserName != loggedInUser.UserName && user.Organization == loggedInUser.Organization && user.TeamOwner == loggedInUser.UserName).ToList();
+
+            foreach (var user in users)
             {
                 var userRoleViewModel = new UserRoleViewModel
                 {
@@ -254,7 +277,7 @@ namespace BugTracker.Controllers
                 // Copy data from AddUserViewModel to IdentityUser
                 var user = new ApplicationUser
                 {
-                    UserName = model.Email.Substring(0, model.Email.IndexOf('@')),
+                    UserName = model.Email, // .Substring(0, model.Email.IndexOf('@')),
                     Email = model.Email,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
