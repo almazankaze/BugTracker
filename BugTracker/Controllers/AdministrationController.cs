@@ -334,29 +334,37 @@ namespace BugTracker.Controllers
         }
 
         [HttpGet]
-        public IActionResult AssignBug(int id)
+        public async Task<IActionResult> AssignBug(int id)
         {
             // store id of report
             ViewBag.reportId = id;
 
-            var model = new List<UserAssignViewModel>();
+            // get id of current logged in user
+            var userId = userManager.GetUserId(HttpContext.User);
 
-            foreach (var user in userManager.Users)
+            // get info of the user
+            var loggedInUser = await userManager.FindByIdAsync(userId);
+
+            var users = userManager.Users.Where(user => user.UserName != loggedInUser.UserName && user.Organization == loggedInUser.Organization && user.TeamOwner == loggedInUser.UserName).ToList();
+
+            var model = new UserAssignViewModel();
+
+            foreach (var user in users)
             {
-                var userAssignViewModel = new UserAssignViewModel
+                var teamMate = new TeamMate()
                 {
                     UserId = user.Id,
                     UserName = user.UserName
                 };
 
-                model.Add(userAssignViewModel);
+                model.TeamMates.Add(teamMate);
             }
 
             return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> AssignBug(List<UserAssignViewModel> model, int id)
+        public async Task<IActionResult> AssignBug(UserAssignViewModel model, int id)
         {
             var bugReport = reportRepository.GetBugReport(id);
 
@@ -367,16 +375,21 @@ namespace BugTracker.Controllers
                 return View("NotFound");
             }
 
-            for (int i = 0; i < model.Count; i++)
-            {
-                var user = await userManager.FindByIdAsync(model[i].UserId);
+            // get selected user
+            string selectedUserId = model.Selected;
+            var user = await userManager.FindByIdAsync(selectedUserId);
 
-                if (model[i].IsSelected)
-                {
-                    bugReport.AssignedTo = user.FirstName + user.LastName;
-                    break;
-                }
+            // if user does not exist
+            if (user == null)
+            {
+                ViewBag.ErrorMessage = $"User with Id = {selectedUserId} cannot be found";
+                return View("NotFound");
             }
+
+
+            // assign bug to user
+            bugReport.AssignedTo = user.FirstName +  " " + user.LastName;
+            reportRepository.Update(bugReport);
 
             return RedirectToAction("update", "report", new { Id = id });
         }

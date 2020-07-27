@@ -46,41 +46,45 @@
                     </div>
                 </div>
 
-                <div class="form-group row">
-                    <div class=" col-md-1">
-                        <b class="text-gray-800">Resolution</b>
-                    </div>
-                    <div class="col-10">
-                        <select asp-for="Resolution" class="selectpicker" data-size="5">
-                            <option value="Open">Open</option>
-                            <option value="Closed">Closed</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-header">
-                        <h4>Currently assigned Operations member</h4>
+                <!-- Only show these buttons to Admin -->
+                @if (User.IsInRole("Admin"))
+                {
+                    <div class="form-group row">
+                        <div class=" col-md-1">
+                            <b class="text-gray-800">Resolution</b>
+                        </div>
+                        <div class="col-10">
+                            <select asp-for="Resolution" class="selectpicker" data-size="5">
+                                <option value="Open">Open</option>
+                                <option value="Closed">Closed</option>
+                            </select>
+                        </div>
                     </div>
 
-                    <div class="card-body">
-                        @if (Model.AssignedTo == null)
-                        {
-                            <h5 class="card-title">None at the moment</h5>
-                        }
-                        else
-                        {
-                            <h5 class="card-title">@Model.AssignedTo</h5>
-                        }
-                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Currently assigned Operations member</h4>
+                        </div>
 
-                    <div class="card-footer">
-                        <a asp-controller="administration" asp-action="assignbug"
-                           asp-route-id="@Model.Id" class="btn btn-primary">
-                            Assign User
-                        </a>
+                        <div class="card-body">
+                            @if (Model.AssignedTo == null)
+                            {
+                                <h5 class="card-title">None at the moment</h5>
+                            }
+                            else
+                            {
+                                <h5 class="card-title">@Model.AssignedTo</h5>
+                            }
+                        </div>
+
+                        <div class="card-footer">
+                            <a asp-controller="administration" asp-action="assignbug"
+                               asp-route-id="@Model.Id" class="btn btn-primary">
+                                Assign User
+                            </a>
+                        </div>
                     </div>
-                </div>
+                }
 
                 <!-- Buttons -->
                 <div class="form-group row">

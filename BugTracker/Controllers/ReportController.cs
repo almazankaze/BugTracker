@@ -122,15 +122,21 @@ namespace BugTracker.Controllers
         public IActionResult Update(ReportUpdateViewModel model)
         {
 
-                BugReport bugReport = reportRepository.GetBugReport(model.Id);
-                bugReport.LastUpdate = DateTime.Now;
-                bugReport.Priority = model.Priority;
-                bugReport.Resolution = model.Resolution;
-                bugReport.Status = model.Status;
+            BugReport bugReport = reportRepository.GetBugReport(model.Id);
+            bugReport.LastUpdate = DateTime.Now;
+            bugReport.Priority = model.Priority;
 
-                // update report in database
-                reportRepository.Update(bugReport);
-                return RedirectToAction("issueDetails", new { id = model.Id });
+            if (model.Resolution == null)
+            {
+                model.Resolution = "Open";
+            }
+
+            bugReport.Resolution = model.Resolution;
+            bugReport.Status = model.Status;
+
+            // update report in database
+            reportRepository.Update(bugReport);
+            return RedirectToAction("issueDetails", new { id = model.Id });
         }
 
         [HttpPost]

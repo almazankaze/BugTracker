@@ -1,5 +1,5 @@
 ﻿
-@model List<UserAssignViewModel>
+@model UserAssignViewModel
 
 @{
     var reportId = ViewBag.reportId;
@@ -17,17 +17,16 @@
                 <h2>Add or remove users from this report</h2>
             </div>
             <div class="card-body">
-                @for (int i = 0; i < Model.Count; i++)
+                @for (int i = 0; i < Model.TeamMates.Count; i++)
                 {
-                    <div class="custom-control custom-radio m-1">
-                        <input type="hidden" asp-for="@Model[i].UserId" />
-                        <input type="hidden" asp-for="@Model[i].UserName" />
-                        <input asp-for="@Model[i].IsSelected" name="operators" type="radio" value="@Model[i].UserName" class="custom-control-input" />
-                        <label class="custom-control-label" asp-for="@Model[i].IsSelected">
-                            @Model[i].UserName
-                        </label>
+                    <div class="m-1">
+                        <input type="hidden" asp-for="@Model.TeamMates[i].UserId" />
+                        <input type="hidden" asp-for="@Model.TeamMates[i].UserName" />
+                        <input asp-for="@Model.Selected" type="radio" value="@Model.TeamMates[i].UserId" />
+                        <label asp-for="@Model.Selected">@Model.TeamMates[i].UserName</label>
                     </div>
                 }
+                <span asp-validation-for="@Model.Selected" class="text-danger"></span>
             </div>
             <div class="card-footer">
                 <input type="submit" value="Assign" class="btn btn-primary"
