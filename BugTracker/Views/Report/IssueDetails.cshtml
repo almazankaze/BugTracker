@@ -5,7 +5,7 @@
 }
 
 <!-- Begin Page Content -->
-    <div class="container-fluid" style="padding:20px; width:80%; margin:auto">
+    <div class="container-fluid">
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -16,9 +16,12 @@
         @if (User.IsInRole("Admin") || User.IsInRole("Operations"))
         {
             <div>
-                <button type="button" class="btn btn-primary">tmp</button>
                 <a asp-controller="report" asp-action="update" asp-route-id="@Model.Id" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Update</a>
-                <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm" data-toggle="modal" data-target="#myModal">Delete</button>
+
+                @if (User.IsInRole("Admin"))
+                {
+                    <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm" data-toggle="modal" data-target="#myModal">Delete</button>
+                }
             </div>
 
             <br />

@@ -7,10 +7,6 @@
       "destination": "wwwroot/lib/bootstrap/"
     },
     {
-      "library": "startbootstrap-sb-admin-2@3.3.7+1",
-      "destination": "wwwroot/lib/bootstrap-admin/"
-    },
-    {
       "library": "jquery@3.5.1",
       "destination": "wwwroot/lib/jquery/"
     },

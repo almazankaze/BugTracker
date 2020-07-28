@@ -25,6 +25,7 @@ namespace BugTracker.Models
         public string Status { get; set; }
         public string Reporter { get; set; }
         public string AssignedTo { get; set; }
+        public string AssignedToUserName { get; set; }
         public string Priority { get; set; }
         public string Resolution { get; set; }
         public string Organization { get; set; }

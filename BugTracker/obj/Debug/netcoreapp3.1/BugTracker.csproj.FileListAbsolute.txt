@@ -742,7 +742,6 @@ C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\BugTr
 C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\BugTracker.RazorCoreGenerate.cache
 C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
 C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Account\Register.cshtml.g.cs
-C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Home\Create.cshtml.g.cs
 C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Home\DashBoard.cshtml.g.cs
 C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
 C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Report\CreateReport.cshtml.g.cs
@@ -774,3 +773,4 @@ C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\Razor
 C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Administration\AddUser.cshtml.g.cs
 C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Administration\AssignBug.cshtml.g.cs
 C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\BugTracker.csprojAssemblyReference.cache
+C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout - Copy.cshtml.g.cs

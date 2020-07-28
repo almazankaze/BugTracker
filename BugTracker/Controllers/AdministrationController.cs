@@ -389,6 +389,7 @@ namespace BugTracker.Controllers
 
             // assign bug to user
             bugReport.AssignedTo = user.FirstName +  " " + user.LastName;
+            bugReport.AssignedToUserName = user.UserName;
             reportRepository.Update(bugReport);
 
             return RedirectToAction("update", "report", new { Id = id });
