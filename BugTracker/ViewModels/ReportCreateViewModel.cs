@@ -9,6 +9,7 @@ namespace BugTracker.ViewModels
 {
     public class ReportCreateViewModel
     {
+
         [Required]
         public string Severity { get; set; }
         [Required]
@@ -22,7 +23,9 @@ namespace BugTracker.ViewModels
         public DateTime LastUpdate { get; set; }
         public string Status { get; set; }
         public string Reporter { get; set; }
+        public string ReporterEmail { get; set; }
         public string AssignedTo { get; set; }
+        public string AssignedToUserName { get; set; }
         public string Priority { get; set; }
         public string Resolution { get; set; }
         public string Organization { get; set; }

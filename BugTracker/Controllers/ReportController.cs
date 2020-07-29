@@ -74,9 +74,12 @@ namespace BugTracker.Controllers
                 LastUpdate = bugReport.LastUpdate,
                 Status = bugReport.Status,
                 Reporter = bugReport.Reporter,
+                ReporterEmail = bugReport.ReporterEmail,
                 AssignedTo = bugReport.AssignedTo,
+                AssignedToUserName = bugReport.AssignedToUserName,
                 Priority = bugReport.Priority,
-                Resolution = bugReport.Resolution
+                Resolution = bugReport.Resolution,
+                Organization = bugReport.Organization
             };
 
             return View(reportUpdateViewModel);
@@ -104,6 +107,7 @@ namespace BugTracker.Controllers
                     PostTime = DateTime.Now,
                     LastUpdate = DateTime.Now,
                     Reporter = user.FirstName + " " + user.LastName,
+                    ReporterEmail = user.Email,
                     Priority = "None",
                     Status = "Created",
                     Resolution = "Open",

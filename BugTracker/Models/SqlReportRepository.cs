@@ -52,5 +52,25 @@ namespace BugTracker.Models
 
             return report;
         }
+
+        public IEnumerable<BugReport> GetReportedBugs(string email)
+        {
+            return context.BugReports.Where(report => report.ReporterEmail == email);
+        }
+
+        public IEnumerable<BugReport> GetAssignedBugs(string email)
+        {
+            return context.BugReports.Where(report => report.AssignedToUserName == email);
+        }
+
+        public IEnumerable<BugReport> GetLonelyBugs()
+        {
+            return context.BugReports.Where(report => report.AssignedTo == null);
+        }
+
+        public IEnumerable<BugReport> GetBugsForReview()
+        {
+            return context.BugReports.Where(report => report.Status.Equals("Complete"));
+        }
     }
 }
