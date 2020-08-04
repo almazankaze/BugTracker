@@ -25,10 +25,51 @@ namespace BugTracker.Controllers
         }
 
         [HttpGet]
-        public IActionResult RolesList()
+        public async Task<IActionResult> RolesList()
         {
-            var roles = roleManager.Roles;
-            return View(roles);
+            // get the roles of the app
+            var adminRole = await roleManager.FindByNameAsync("Admin");
+            var opRole = await roleManager.FindByNameAsync("Operations");
+
+            // check to see that these roles exist
+            if (adminRole == null || opRole == null)
+            {
+                ViewBag.ErrorMessage = $"Role Admin or Operations cannot be found";
+                return View("NotFound");
+            }
+
+            // create view model
+            var model = new RoleListViewModel()
+            {
+                AdminRoleID = adminRole.Id,
+                OpRoleID = opRole.Id
+            };
+
+            // get current logged in user
+            var loggedInUser = await userManager.GetUserAsync(HttpContext.User);
+
+            // get list of users on same team
+            var users = userManager.Users.Where(user => user.Organization == loggedInUser.Organization && user.TeamOwner == loggedInUser.TeamOwner).ToList();
+
+            // assign users to a list
+            foreach (var user in users)
+            {
+                // If the user is in this role, add the username to
+                // AdminUsers or OpUsers of RoleListViewModel. This model
+                // object is then passed to the view for display
+                if (await userManager.IsInRoleAsync(user, adminRole.Name))
+                {
+                    model.AdminUsers.Add(user);
+                }
+                
+                if(await userManager.IsInRoleAsync(user, opRole.Name))
+                {
+                    model.OpUsers.Add(user);
+                }
+            }
+
+
+            return View(model);
         }
 
         [HttpGet]
@@ -41,94 +82,20 @@ namespace BugTracker.Controllers
             var loggedInUser = await userManager.FindByIdAsync(userId);
 
             // only retrieve users of the same team
-            var users = userManager.Users.Where(user => user.UserName != loggedInUser.UserName && user.Organization == loggedInUser.Organization && user.TeamOwner == loggedInUser.UserName).ToList();
+            var users = userManager.Users.Where(user => user.UserName != loggedInUser.UserName && user.Organization == loggedInUser.Organization && user.TeamOwner == loggedInUser.TeamOwner).ToList();
             return View(users);
         }
 
-        // Role ID is passed from the URL to the action
         [HttpGet]
-        public async Task<IActionResult> EditRole(string id)
+        public async Task<IActionResult> EditUsersInRole(string id)
         {
-            // Find the role by Role ID
+            ViewBag.roleId = id;
+
             var role = await roleManager.FindByIdAsync(id);
 
             if (role == null)
             {
                 ViewBag.ErrorMessage = $"Role with Id = {id} cannot be found";
-                return View("NotFound");
-            }
-
-            var model = new EditRoleViewModel
-            {
-                Id = role.Id,
-                RoleName = role.Name
-            };
-
-            // get id of current logged in user
-            var userId = userManager.GetUserId(HttpContext.User);
-
-            // get info of the user
-            var loggedInUser = await userManager.FindByIdAsync(userId);
-
-            var users = userManager.Users.Where(user => user.Organization == loggedInUser.Organization && user.TeamOwner == loggedInUser.UserName).ToList();
-
-            // Retrieve all the Users
-            foreach (var user in users)
-            {
-                // If the user is in this role, add the username to
-                // Users property of EditRoleViewModel. This model
-                // object is then passed to the view for display
-                if (await userManager.IsInRoleAsync(user, role.Name))
-                {
-                    model.Users.Add(user.UserName);
-                }
-            }
-
-            return View(model);
-        }
-
-        // This action responds to HttpPost and receives EditRoleViewModel
-        [HttpPost]
-        public async Task<IActionResult> EditRole(EditRoleViewModel model)
-        {
-            var role = await roleManager.FindByIdAsync(model.Id);
-
-            if (role == null)
-            {
-                ViewBag.ErrorMessage = $"Role with Id = {model.Id} cannot be found";
-                return View("NotFound");
-            }
-            else
-            {
-                role.Name = model.RoleName;
-
-                // Update the Role using UpdateAsync
-                var result = await roleManager.UpdateAsync(role);
-
-                if (result.Succeeded)
-                {
-                    return RedirectToAction("roleslist");
-                }
-
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError("", error.Description);
-                }
-
-                return View(model);
-            }
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> EditUsersInRole(string roleId)
-        {
-            ViewBag.roleId = roleId;
-
-            var role = await roleManager.FindByIdAsync(roleId);
-
-            if (role == null)
-            {
-                ViewBag.ErrorMessage = $"Role with Id = {roleId} cannot be found";
                 return View("NotFound");
             }
 
@@ -140,7 +107,7 @@ namespace BugTracker.Controllers
             // get info of the user
             var loggedInUser = await userManager.FindByIdAsync(userId);
 
-            var users = userManager.Users.Where(user => user.UserName != loggedInUser.UserName && user.Organization == loggedInUser.Organization && user.TeamOwner == loggedInUser.UserName).ToList();
+            var users = userManager.Users.Where(user => user.UserName != loggedInUser.UserName && user.Organization == loggedInUser.Organization && user.TeamOwner == loggedInUser.TeamOwner).ToList();
 
             foreach (var user in users)
             {
@@ -166,14 +133,14 @@ namespace BugTracker.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditUsersInRole(List<UserRoleViewModel> model, string roleId)
+        public async Task<IActionResult> EditUsersInRole(List<UserRoleViewModel> model, string id)
         {
-            var role = await roleManager.FindByIdAsync(roleId);
+            var role = await roleManager.FindByIdAsync(id);
             
 
             if (role == null)
             {
-                ViewBag.ErrorMessage = $"Role with Id = {roleId} cannot be found";
+                ViewBag.ErrorMessage = $"Role with Id = {id} cannot be found";
                 return View("NotFound");
             }
 
@@ -201,11 +168,11 @@ namespace BugTracker.Controllers
                     if (i < (model.Count - 1))
                         continue;
                     else
-                        return RedirectToAction("editrole", new { Id = roleId });
+                        return RedirectToAction("roleslist");
                 }
             }
 
-            return RedirectToAction("editrole", new { Id = roleId });
+            return RedirectToAction("roleslist");
         }
 
         public IActionResult AddUser()

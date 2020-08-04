@@ -1,4 +1,4 @@
-﻿@model IEnumerable<IdentityRole>
+﻿@model RoleListViewModel
 
 @{
     ViewBag.Title = "Roles";
@@ -10,44 +10,54 @@
         <h1 class="h3 mb-0 text-gray-800">Current Roles</h1>
     </div>
 
-    @if (Model.Any())
-    {
+    <div class="row">
 
-        foreach (var role in Model)
-        {
+        <!-- Admin Card-->
+        <div class="col-xl-6 col-lg-6">
             <div class="card shadow mb-3">
 
-                <!-- Card Header -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">@role.Name</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Admin</h6>
                 </div>
 
                 <div class="card-body">
-                    <h5 class="card-title">@role.Name</h5>
-                </div>
-                <div class="card-footer">
-                    <a asp-controller="administration" asp-action="editrole"
-                       asp-route-id="@role.Id" class="btn btn-primary">
-                        Edit
-                    </a>
-
-                    @if (!(role.Name.Equals("Admin") || role.Name.Equals("Operations")))
+                    @foreach (var adminUser in Model.AdminUsers)
                     {
-                        <button class="btn btn-danger" data-toggle="modal" data-target="#myModal">Delete</button>
+                        <h5 class="card-title">@adminUser.FirstName @adminUser.LastName</h5>
                     }
-
                 </div>
-            </div>
-        }
-    }
-    else
-    {
-        <div class="card">
-            <div class="card-header">
-                No roles created yet
-            </div>
-            <div class="card-body">
+
+                <div class="card-footer">
+                    <a asp-controller="administration" asp-action="editUsersInRole"
+                       asp-route-id="@Model.AdminRoleID" class="btn btn-primary">
+                        Add or Remove
+                    </a>
+                </div>
             </div>
         </div>
-    }
+
+        <!-- Op Card-->
+        <div class="col-xl-6 col-lg-6">
+            <div class="card shadow mb-3">
+
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Operations</h6>
+                </div>
+
+                <div class="card-body">
+                    @foreach (var opUser in Model.OpUsers)
+                    {
+                        <h5 class="card-title">@opUser.FirstName @opUser.LastName</h5>
+                    }
+                </div>
+
+                <div class="card-footer">
+                    <a asp-controller="administration" asp-action="editUsersInRole"
+                       asp-route-id="@Model.OpRoleID" class="btn btn-primary">
+                        Add or Remove
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

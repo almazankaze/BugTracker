@@ -4,10 +4,10 @@
     var roleId = ViewBag.roleId;
 }
 
-<div class="container" style="padding:20px; width:80%; margin:auto">
+<div class="container">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Assign Users To A Role</h1>
+        <h1 class="h3 mb-0 text-gray-800">Edit Role</h1>
     </div>
 
     <form method="post">
@@ -31,8 +31,7 @@
             <div class="card-footer">
                 <input type="submit" value="Update" class="btn btn-primary"
                         style="width:auto" />
-                <a asp-action="editrole" asp-route-id="@roleId"
-                    class="btn btn-primary" style="width:auto">Cancel</a>
+                <a asp-action="roleslist" class="btn btn-primary" style="width:auto">Cancel</a>
             </div>
         </div>
     </form>

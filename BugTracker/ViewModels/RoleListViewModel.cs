@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace BugTracker.ViewModels
 {
-    public class RoleListViewModelcs
+    public class RoleListViewModel
     {
-        public RoleListViewModelcs()
+        public RoleListViewModel()
         {
             AdminUsers = new List<ApplicationUser>();
             OpUsers = new List<ApplicationUser>();
         }
 
-        public int AdminRoleID { get; set; }
-        public int OpRoleID { get; set; }
-        public IEnumerable<ApplicationUser> AdminUsers { get; set; }
-        public IEnumerable<ApplicationUser> OpUsers { get; set; }
+        public string AdminRoleID { get; set; }
+        public string OpRoleID { get; set; }
+        public List<ApplicationUser> AdminUsers { get; set; }
+        public List<ApplicationUser> OpUsers { get; set; }
     }
 }
