@@ -117,7 +117,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var report in Model.AssignedBugs)
+                                @foreach (var report in Model.NeedUsers)
                                 {
                                     <tr>
                                         <th><a asp-controller="report" asp-action="issuedetails" asp-route-id="@report.Id">@report.Id</a></th>
