@@ -13,87 +13,113 @@
     </div>
 
     <!-- Begin Form-->
-    <div class="container" style="padding:20px;">
-        <form asp-controller="report" asp-action="update" method="post">
-            <div class="form-group">
+    <div class="container">
+        <form asp-controller="report" asp-action="update" method="post" class="mt-3">
 
+            <div class="form-group row">
+                <label asp-for="Id" class="col-md-1 col-form-label"></label>
+                <div class="col-sm-10">
+                    <input asp-for="Id" disabled class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label asp-for="Category" class="col-md-1 col-form-label"></label>
+                <div class="col-sm-10">
+                    <input asp-for="Category" disabled class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label asp-for="Severity" class="col-md-1 col-form-label"></label>
+                <div class="col-sm-10">
+                    <input asp-for="Severity" disabled class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label asp-for="Summary" class="col-md-1 col-form-label"></label>
+                <div class="col-sm-10">
+                    <input asp-for="Summary" disabled class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class=" col-md-1">
+                    <b class="text-gray-800">Priority</b>
+                </div>
+                <div class="col-10">
+                    <select asp-for="Priority" class="selectpicker" data-size="5">
+                        <option value="None">None</option>
+                        <option value="Low">Low</option>
+                        <option value="High">High</option>
+                        <option value="Urgent">Urgent</option>
+                        <option value="Immediate">Immediate</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class=" col-md-1">
+                    <b class="text-gray-800">Status</b>
+                </div>
+                <div class="col-10">
+                    <select asp-for="Status" class="selectpicker" data-size="5">
+                        <option value="Created">Created</option>
+                        <option value="Acknowledged">Acknowleged</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Complete">Complete</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Only show these buttons to Admin -->
+            @if (User.IsInRole("Admin"))
+            {
                 <div class="form-group row">
                     <div class=" col-md-1">
-                        <b class="text-gray-800">Priority</b>
+                        <b class="text-gray-800">Resolution</b>
                     </div>
                     <div class="col-10">
-                        <select asp-for="Priority" class="selectpicker" data-size="5">
-                            <option value="None">None</option>
-                            <option value="Low">Low</option>
-                            <option value="High">High</option>
-                            <option value="Urgent">Urgent</option>
-                            <option value="Immediate">Immediate</option>
+                        <select asp-for="Resolution" class="selectpicker" data-size="5">
+                            <option value="Open">Open</option>
+                            <option value="Closed">Closed</option>
                         </select>
                     </div>
                 </div>
 
-                <div class="form-group row">
-                    <div class=" col-md-1">
-                        <b class="text-gray-800">Status</b>
+                <div class="card shadow">
+                    <div class="card-header">
+                        <h4>Currently assigned Operations member</h4>
                     </div>
-                    <div class="col-10">
-                        <select asp-for="Status" class="selectpicker" data-size="5">
-                            <option value="Created">Created</option>
-                            <option value="Acknowledged">Acknowleged</option>
-                            <option value="In Progress">In Progress</option>
-                            <option value="Complete">Complete</option>
-                        </select>
+
+                    <div class="card-body">
+                        @if (Model.AssignedTo == null)
+                        {
+                            <h5 class="card-title">None at the moment</h5>
+                        }
+                        else
+                        {
+                            <h5 class="card-title">@Model.AssignedTo</h5>
+                        }
+                    </div>
+
+                    <div class="card-footer">
+                        <a asp-controller="administration" asp-action="assignbug"
+                           asp-route-id="@Model.Id" class="btn btn-primary">
+                            Assign User
+                        </a>
                     </div>
                 </div>
+            }
 
-                <!-- Only show these buttons to Admin -->
-                @if (User.IsInRole("Admin"))
-                {
-                    <div class="form-group row">
-                        <div class=" col-md-1">
-                            <b class="text-gray-800">Resolution</b>
-                        </div>
-                        <div class="col-10">
-                            <select asp-for="Resolution" class="selectpicker" data-size="5">
-                                <option value="Open">Open</option>
-                                <option value="Closed">Closed</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Currently assigned Operations member</h4>
-                        </div>
-
-                        <div class="card-body">
-                            @if (Model.AssignedTo == null)
-                            {
-                                <h5 class="card-title">None at the moment</h5>
-                            }
-                            else
-                            {
-                                <h5 class="card-title">@Model.AssignedTo</h5>
-                            }
-                        </div>
-
-                        <div class="card-footer">
-                            <a asp-controller="administration" asp-action="assignbug"
-                               asp-route-id="@Model.Id" class="btn btn-primary">
-                                Assign User
-                            </a>
-                        </div>
-                    </div>
-                }
-
-                <!-- Buttons -->
-                <div class="form-group row">
-                    <div class="col-md-3 text-right">
-                        <button type="submit" class="btn btn-primary form-control" style="width:150px">Update</button>
-                    </div>
-                    <div class="col-md-3 text-right">
-                        <a asp-action="issuedetails" asp-route-id="@Model.Id" class="btn btn-secondary" style="width:150px">Cancel</a>
-                    </div>
+            <!-- Buttons -->
+            <div class="form-group row" style="padding-top: 20px">
+                <div class="col-md-1 text-right">
+                    <button type="submit" class="btn btn-primary form-control" style="width:150px">Update</button>
+                </div>
+                <div class="col-md-3 text-right">
+                    <a asp-action="issuedetails" asp-route-id="@Model.Id" class="btn btn-secondary" style="width:150px">Cancel</a>
                 </div>
             </div>
         </form>

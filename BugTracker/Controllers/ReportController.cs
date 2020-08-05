@@ -59,6 +59,7 @@ namespace BugTracker.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Operations, Admin")]
         public ViewResult Update(int id)
         {
             BugReport bugReport = reportRepository.GetBugReport(id);
@@ -116,7 +117,7 @@ namespace BugTracker.Controllers
 
                 // add new employee to database
                 reportRepository.Add(newReport);
-                return RedirectToAction("index", "home");
+                return RedirectToAction("dashboard", "home");
             }
 
             return View();
