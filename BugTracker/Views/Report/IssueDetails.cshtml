@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Issue Details";
+    var teamOwner = ViewBag.TeamOwner;
 }
 
 <!-- Begin Page Content -->
@@ -12,37 +13,42 @@
         <h1 class="h3 mb-0 text-gray-800">Issue Details</h1>
     </div>
 
-    <!-- Only show these buttons to Admin-->
-    @if (User.IsInRole("Admin"))
+    <!-- Only show this if user belongs this this organization -->
+    @if (teamOwner == Model.TeamOwner)
     {
-        <div>
-            <!-- If report is closed -->
-            @if (Model.Resolution == "Closed")
-            {
 
-                <a asp-controller="report" asp-action="update" asp-route-id="@Model.Id" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Open</a>
-            }
-            else
-            {
-                <a asp-controller="report" asp-action="update" asp-route-id="@Model.Id" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Update</a>
-            }
-
-            <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm" data-toggle="modal" data-target="#myModal">Delete</button>
-        </div>
-
-        <br />
-    }
-
-    <!-- Only show to Operations -->
-    @if (User.IsInRole("Operations"))
-    {
-        @if(Model.Resolution == "Open")
+        <!-- Only show these buttons to Admin-->
+        @if (User.IsInRole("Admin"))
         {
             <div>
-                <a asp-controller="report" asp-action="update" asp-route-id="@Model.Id" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Update</a>
+                <!-- If report is closed -->
+                @if (Model.Resolution == "Closed")
+                {
+
+                    <a asp-controller="report" asp-action="update" asp-route-id="@Model.Id" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Open</a>
+                }
+                else
+                {
+                    <a asp-controller="report" asp-action="update" asp-route-id="@Model.Id" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Update</a>
+                }
+
+                <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm" data-toggle="modal" data-target="#myModal">Delete</button>
             </div>
 
             <br />
+        }
+
+        <!-- Only show to Operations -->
+        @if (User.IsInRole("Operations"))
+        {
+            @if (Model.Resolution == "Open")
+            {
+                <div>
+                    <a asp-controller="report" asp-action="update" asp-route-id="@Model.Id" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Update</a>
+                </div>
+
+                <br />
+            }
         }
     }
 

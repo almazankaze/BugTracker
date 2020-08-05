@@ -40,8 +40,12 @@ namespace BugTracker.Controllers
 
         // get all the details of a report
         [HttpGet]
-        public ViewResult IssueDetails(int? id)
+        public async Task<ViewResult> IssueDetails(int? id)
         {
+            // get logged in user
+            var user = await userManager.GetUserAsync(HttpContext.User);
+            ViewBag.teamOwner = user.TeamOwner;
+
             BugReport bugReport = reportRepository.GetBugReport(id.Value);
 
             // bug report does not exist, show error page
@@ -56,9 +60,18 @@ namespace BugTracker.Controllers
 
         [HttpGet]
         [Authorize(Roles = "Operations, Admin")]
-        public ViewResult Update(int id)
+        public async Task<ViewResult> Update(int id)
         {
+            // get logged in user
+            var user = await userManager.GetUserAsync(HttpContext.User);
+
             BugReport bugReport = reportRepository.GetBugReport(id);
+
+            // check that user belongs to correct organization and can edit
+            if(user.TeamOwner != bugReport.TeamOwner)
+            {
+                return View("NoAccess");
+            }
 
             if(bugReport.Resolution == "Closed")
             {
