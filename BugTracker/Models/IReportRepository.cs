@@ -9,15 +9,17 @@ namespace BugTracker.Models
     {
         BugReport GetBugReport(int id);
 
-        IEnumerable<BugReport> GetReports();
+        IEnumerable<BugReport> GetAllReports();
+
+        IEnumerable<BugReport> GetReports(string teamOwner);
 
         IEnumerable<BugReport> GetReportedBugs(string email);
 
         IEnumerable<BugReport> GetAssignedBugs(string email);
 
-        IEnumerable<BugReport> GetLonelyBugs();
+        IEnumerable<BugReport> GetLonelyBugs(string teamOwner);
 
-        IEnumerable<BugReport> GetBugsForReview();
+        IEnumerable<BugReport> GetBugsForReview(string teamOwner);
 
         BugReport Add(BugReport bugReport);
 

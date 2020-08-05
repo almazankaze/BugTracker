@@ -27,9 +27,9 @@ namespace BugTracker.Models
             return context.BugReports.Find(id);
         }
 
-        public IEnumerable<BugReport> GetReports()
+        public IEnumerable<BugReport> GetReports(string teamOwner)
         {
-            return context.BugReports;
+            return context.BugReports.Where(report => report.TeamOwner == teamOwner);
         }
 
         public BugReport Update(BugReport reportChanges)
@@ -63,14 +63,19 @@ namespace BugTracker.Models
             return context.BugReports.Where(report => report.AssignedToUserName == email);
         }
 
-        public IEnumerable<BugReport> GetLonelyBugs()
+        public IEnumerable<BugReport> GetLonelyBugs(string teamOwner)
         {
-            return context.BugReports.Where(report => report.AssignedTo == null);
+            return context.BugReports.Where(report => report.AssignedTo == null && report.TeamOwner == teamOwner);
         }
 
-        public IEnumerable<BugReport> GetBugsForReview()
+        public IEnumerable<BugReport> GetBugsForReview(string teamOwner)
         {
-            return context.BugReports.Where(report => report.Status.Equals("Complete"));
+            return context.BugReports.Where(report => report.Status.Equals("Complete") && report.TeamOwner == teamOwner);
+        }
+
+        public IEnumerable<BugReport> GetAllReports()
+        {
+            return context.BugReports;
         }
     }
 }

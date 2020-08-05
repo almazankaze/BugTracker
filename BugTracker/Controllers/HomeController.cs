@@ -45,10 +45,10 @@ namespace BugTracker.Controllers
             model.AssignedBugs = reportRepository.GetAssignedBugs(user.Email);
 
             // get list of bugs that need to be assigned to someone
-            model.NeedUsers = reportRepository.GetLonelyBugs();
+            model.NeedUsers = reportRepository.GetLonelyBugs(user.TeamOwner);
 
             // get list of bugs that need to be reviewed to be closed
-            model.NeedReview = reportRepository.GetBugsForReview();
+            model.NeedReview = reportRepository.GetBugsForReview(user.TeamOwner);
 
             return View(model);
         }

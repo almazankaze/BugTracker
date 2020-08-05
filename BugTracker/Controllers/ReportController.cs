@@ -29,16 +29,12 @@ namespace BugTracker.Controllers
         }
 
         [HttpGet]
-        public ViewResult ViewIssues()
+        public async Task<ViewResult> ViewReports()
         {
-            var model = reportRepository.GetReports();
-            return View(model);
-        }
+            // get current logged in user
+            var user = await userManager.GetUserAsync(HttpContext.User);
 
-        [HttpGet]
-        public ViewResult ViewReports()
-        {
-            var model = reportRepository.GetReports();
+            var model = reportRepository.GetReports(user.TeamOwner);
             return View(model);
         }
 
@@ -64,6 +60,15 @@ namespace BugTracker.Controllers
         {
             BugReport bugReport = reportRepository.GetBugReport(id);
 
+            if(bugReport.Resolution == "Closed")
+            {
+                ViewBag.ErrorTitle = $"Bug report is closed";
+                ViewBag.ErrorMessage = $"Bug with Id " + $"{bugReport.Id} is closed. " +
+                    $"Please contact your admin to reopen";
+
+                return View("Error");
+            }
+
             ReportUpdateViewModel reportUpdateViewModel = new ReportUpdateViewModel
             {
                 Id = bugReport.Id,
@@ -80,7 +85,8 @@ namespace BugTracker.Controllers
                 AssignedToUserName = bugReport.AssignedToUserName,
                 Priority = bugReport.Priority,
                 Resolution = bugReport.Resolution,
-                Organization = bugReport.Organization
+                Organization = bugReport.Organization,
+                TeamOwner = bugReport.TeamOwner
             };
 
             return View(reportUpdateViewModel);
@@ -112,7 +118,8 @@ namespace BugTracker.Controllers
                     Priority = "None",
                     Status = "Created",
                     Resolution = "Open",
-                    Organization = user.Organization
+                    Organization = user.Organization,
+                    TeamOwner = user.TeamOwner
                 };
 
                 // add new employee to database
