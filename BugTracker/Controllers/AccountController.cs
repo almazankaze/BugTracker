@@ -164,10 +164,45 @@ namespace BugTracker.Controllers
 
             EditProfileViewModel model = new EditProfileViewModel
             {
-
+                Id = loggedInUser.Id,
+                UserName = loggedInUser.UserName,
+                FirstName = loggedInUser.FirstName,
+                LastName = loggedInUser.LastName
             };
 
             return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Settings(EditProfileViewModel model)
+        {
+            var user = await userManager.FindByIdAsync(model.Id);
+
+            if (user == null)
+            {
+
+                return View("AccountNotFound");
+            }
+            else
+            {
+
+                user.FirstName = model.FirstName;
+                user.LastName = model.LastName;
+
+                var result = await userManager.UpdateAsync(user);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("dashboard", "home");
+                }
+
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+
+                return View(model);
+            }
         }
     }
 }
