@@ -327,5 +327,50 @@ namespace BugTracker.Controllers
 
             return RedirectToAction("update", "report", new { Id = id });
         }
+
+        [HttpGet]
+        public async Task<IActionResult> OpenBug(int id)
+        {
+            // get logged in user
+            var user = await userManager.GetUserAsync(HttpContext.User);
+
+            BugReport bugReport = reportRepository.GetBugReport(id);
+
+            // check that user belongs to correct organization and can edit
+            if (user.TeamOwner != bugReport.TeamOwner)
+            {
+                return View("NoAccess");
+            }
+
+            if (bugReport.Resolution == "Open")
+            {
+                ViewBag.ErrorTitle = $"Bug report is open";
+                ViewBag.ErrorMessage = $"Bug with Id " + $"{bugReport.Id} is open. " +
+                    $"No need to reopen";
+
+                return View("Error");
+            }
+
+            ReopenViewModel model = new ReopenViewModel
+            {
+                Id = bugReport.Id
+            };
+
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult OpenBug(ReopenViewModel model)
+        {
+            BugReport bugReport = reportRepository.GetBugReport(model.Id);
+            bugReport.Status = "Created";
+            bugReport.Resolution = "Open";
+            bugReport.LastUpdate = DateTime.Now;
+
+            // update report in database
+            reportRepository.Update(bugReport);
+            return RedirectToAction("issueDetails", "report", new { id = model.Id });
+        }
     }
 }

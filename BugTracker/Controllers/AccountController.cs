@@ -7,6 +7,7 @@ using BugTracker.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualBasic.CompilerServices;
 
 namespace BugTracker.Controllers
 {
@@ -129,6 +130,44 @@ namespace BugTracker.Controllers
         public IActionResult AccessDenied()
         {
             return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Profile(string id)
+        {
+
+            if(id == null)
+            {
+                // get current logged in user
+                var loggedInUser = await userManager.GetUserAsync(HttpContext.User);
+
+                return View(loggedInUser);
+            }
+
+            // get user
+            var user = await userManager.FindByIdAsync(id);
+
+            if (user == null)
+            {
+                Response.StatusCode = 404;
+                return View("AccountNotFound");
+            }
+
+            return View(user);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Settings()
+        {
+            // get current logged in user
+            var loggedInUser = await userManager.GetUserAsync(HttpContext.User);
+
+            EditProfileViewModel model = new EditProfileViewModel
+            {
+
+            };
+
+            return View(model);
         }
     }
 }
