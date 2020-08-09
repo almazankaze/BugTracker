@@ -15,6 +15,7 @@ namespace BugTracker.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string TeamOwner { get; set; }
+        public string PhotoPath { get; set; }
 
     }
 }

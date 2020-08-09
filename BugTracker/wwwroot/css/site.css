@@ -2,3 +2,8 @@
     background-color: #ffffff;
     height: 5px;
 }
+
+.imageThumbnail {
+    height: auto;
+    width: 75px;
+}

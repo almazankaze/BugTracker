@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -18,5 +19,8 @@ namespace BugTracker.ViewModels
         [Required(ErrorMessage = "Last Name is required")]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
+
+        public IFormFile Photo { get; set; }
+        public string ExistingPhotoPath { get; set; }
     }
 }

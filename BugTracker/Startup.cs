@@ -37,7 +37,9 @@ namespace BugTracker
                 options.SignIn.RequireConfirmedAccount = false;
             }).AddEntityFrameworkStores<AppDbContext>();
 
-            services.AddControllersWithViews();
+            services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>, MyUserClaimsPrincipalFactory>();
+
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddScoped<IReportRepository, SqlReportRepository>();
         }
 

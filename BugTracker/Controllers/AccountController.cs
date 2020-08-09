@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using BugTracker.Models;
 using BugTracker.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualBasic.CompilerServices;
@@ -16,13 +18,16 @@ namespace BugTracker.Controllers
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
         private readonly RoleManager<IdentityRole> roleManager;
+        private readonly IWebHostEnvironment hostingEnvironment;
 
         public AccountController(UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager, RoleManager<IdentityRole> roleManager)
+            SignInManager<ApplicationUser> signInManager, RoleManager<IdentityRole> roleManager,
+            IWebHostEnvironment hostingEnvironment)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.roleManager = roleManager;
+            this.hostingEnvironment = hostingEnvironment;
         }
 
         [HttpPost]
@@ -167,7 +172,8 @@ namespace BugTracker.Controllers
                 Id = loggedInUser.Id,
                 UserName = loggedInUser.UserName,
                 FirstName = loggedInUser.FirstName,
-                LastName = loggedInUser.LastName
+                LastName = loggedInUser.LastName,
+                ExistingPhotoPath = loggedInUser.PhotoPath
             };
 
             return View(model);
@@ -189,10 +195,22 @@ namespace BugTracker.Controllers
                 user.FirstName = model.FirstName;
                 user.LastName = model.LastName;
 
+                if (model.Photo != null)
+                {
+                    if (model.ExistingPhotoPath != null)
+                    {
+                        // delete old image
+                        string filePath = Path.Combine(hostingEnvironment.WebRootPath, "images", model.ExistingPhotoPath);
+                        System.IO.File.Delete(filePath);
+                    }
+                    user.PhotoPath = ProcessUploadedFile(model);
+                }
+
                 var result = await userManager.UpdateAsync(user);
 
                 if (result.Succeeded)
                 {
+                    await signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("dashboard", "home");
                 }
 
@@ -203,6 +221,26 @@ namespace BugTracker.Controllers
 
                 return View(model);
             }
+        }
+
+        private string ProcessUploadedFile(EditProfileViewModel model)
+        {
+            string uniqueFileName = null;
+
+            if (model.Photo != null)
+            {
+                // save image to images folder
+                string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "images");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Photo.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    model.Photo.CopyTo(fileStream);
+                }
+            }
+
+            return uniqueFileName;
         }
     }
 }
