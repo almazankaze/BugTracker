@@ -15,11 +15,14 @@ namespace BugTracker.Controllers
     {
         private readonly IReportRepository reportRepository;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly INoteRepository noteRepository;
 
-        public ReportController(IReportRepository reportRepository, UserManager<ApplicationUser> userManager)
+        public ReportController(IReportRepository reportRepository, UserManager<ApplicationUser> userManager,
+            INoteRepository noteRepository)
         {
             this.reportRepository = reportRepository;
             this.userManager = userManager;
+            this.noteRepository = noteRepository;
         }
 
         [HttpGet]
@@ -54,6 +57,8 @@ namespace BugTracker.Controllers
                 Response.StatusCode = 404;
                 return View("ReportNotFound", id);
             }
+
+            var model = noteRepository.GetAllNotes(bugReport.Id);
 
             return View(bugReport);
         }
@@ -144,10 +149,17 @@ namespace BugTracker.Controllers
         }
 
         [HttpPost]
-        public IActionResult Update(ReportUpdateViewModel model)
+        public async Task<IActionResult> Update(ReportUpdateViewModel model)
         {
 
             BugReport bugReport = reportRepository.GetBugReport(model.Id);
+
+            if (bugReport == null)
+            {
+                ViewBag.ErrorMessage = $"Report with Id = {model.Id} cannot be found and was not updated";
+                return View("NotFound");
+            }
+
             bugReport.LastUpdate = DateTime.Now;
             bugReport.Priority = model.Priority;
 
@@ -161,6 +173,25 @@ namespace BugTracker.Controllers
 
             // update report in database
             reportRepository.Update(bugReport);
+
+            // create a note
+            if (model.Note != null)
+            {
+                // get logged in user
+                var user = await userManager.GetUserAsync(HttpContext.User);
+
+                ReportNote reportNote = new ReportNote
+                {
+                    ReportId = bugReport.Id,
+                    PostTime = bugReport.LastUpdate,
+                    Description = model.Note.Replace("\n", "<br />"),
+                    PostedBy = user.Id,
+                    PhotoPath = user.PhotoPath
+                };
+
+                noteRepository.Add(reportNote);
+            }
+
             return RedirectToAction("issueDetails", new { id = model.Id });
         }
 

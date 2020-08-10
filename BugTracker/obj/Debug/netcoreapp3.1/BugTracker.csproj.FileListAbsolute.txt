@@ -782,3 +782,4 @@ C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\BugTr
 C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\BugTracker.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\BugTracker.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Account\ConfirmEmail.cshtml.g.cs
+C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\BugTracker.csprojAssemblyReference.cache

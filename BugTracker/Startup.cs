@@ -43,6 +43,7 @@ namespace BugTracker
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddScoped<IReportRepository, SqlReportRepository>();
+            services.AddScoped<INoteRepository, SqlNoteRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
