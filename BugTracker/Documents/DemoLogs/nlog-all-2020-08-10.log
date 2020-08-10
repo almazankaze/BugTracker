@@ -1,0 +1,4 @@
+2020-08-10 15:21:36.8071|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2020-08-10 15:21:36.8507|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2020-08-10 15:21:36.8622|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Users\almaz\Documents\Git\BugProject\BugTracker
+2020-08-10 15:23:17.6748|WARN|BugTracker.Controllers.AccountController|https://localhost:44302/Account/ConfirmEmail?userId=1917da51-df50-4bc0-a6fb-5f13dfd2da88&token=CfDJ8O81S122vWFJtlOUPb3ZxPpYS5M75fn%2BYxcM6lMwaitVM%2FQBTLB%2F16ZLLdQW5rQ%2FZIw4W3CuVKWQXT3OX0l06%2FJsKrv6Jg62q%2FWSgu7aZ%2F%2BkTWzTYhOaRQmWoszVHn1eAlPRRIVNGasqAQdGfyivZU5QL6vHmu5bcNnD%2B1Y%2FGLa1ZSgV%2BiZZ1dRsvVGRMi1tLd495vKpbHt8pv9gGrIKUxk8uPZX3Ks3zaL%2FI0ir3xG7j0vZmMGMlPe9QE9C1EBRzg%3D%3D

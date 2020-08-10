@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "O6aOo0XaSbruVFgMhKlo/BRJd/UpPPrgyScdCcO5GDgJ95MxOfosVeoFl0n8p3Ih184+jNHAHlEDZby+PXZePg==",
+  "dgSpecHash": "3inj5V89bHyGqUTeaDopLqERQXDDsG1UWWV+HYrrU8lIUu3sWgvLjEcxN9djJfm8gXirAXFHBQREfsC2pRNxLA==",
   "success": true,
   "projectFilePath": "C:\\Users\\almaz\\Documents\\Git\\BugProject\\BugTracker\\BugTracker.csproj",
   "expectedPackageFiles": [
@@ -43,6 +43,9 @@
     "C:\\Users\\almaz\\.nuget\\packages\\microsoft.netcore.platforms\\2.1.2\\microsoft.netcore.platforms.2.1.2.nupkg.sha512",
     "C:\\Users\\almaz\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\almaz\\.nuget\\packages\\microsoft.win32.registry\\4.5.0\\microsoft.win32.registry.4.5.0.nupkg.sha512",
+    "C:\\Users\\almaz\\.nuget\\packages\\nlog\\4.7.2\\nlog.4.7.2.nupkg.sha512",
+    "C:\\Users\\almaz\\.nuget\\packages\\nlog.extensions.logging\\1.6.4\\nlog.extensions.logging.1.6.4.nupkg.sha512",
+    "C:\\Users\\almaz\\.nuget\\packages\\nlog.web.aspnetcore\\4.9.3\\nlog.web.aspnetcore.4.9.3.nupkg.sha512",
     "C:\\Users\\almaz\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
     "C:\\Users\\almaz\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\almaz\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",

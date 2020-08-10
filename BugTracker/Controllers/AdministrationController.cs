@@ -7,6 +7,7 @@ using BugTracker.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace BugTracker.Controllers
 {
@@ -16,12 +17,15 @@ namespace BugTracker.Controllers
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IReportRepository reportRepository;
+        private readonly ILogger<AccountController> logger;
 
-        public AdministrationController(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager, IReportRepository reportRepository)
+        public AdministrationController(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager, 
+            IReportRepository reportRepository, ILogger<AccountController> logger)
         {
             this.roleManager = roleManager;
             this.userManager = userManager;
             this.reportRepository = reportRepository;
+            this.logger = logger;
         }
 
         [HttpGet]
@@ -224,6 +228,14 @@ namespace BugTracker.Controllers
                 // If user is successfully created, redirect to list of users
                 if (result.Succeeded)
                 {
+
+                    var token = await userManager.GenerateEmailConfirmationTokenAsync(user);
+
+                    var confirmationLink = Url.Action("ConfirmEmail", "Account",
+                        new { userId = user.Id, token = token }, Request.Scheme);
+
+                    logger.Log(LogLevel.Warning, confirmationLink);
+
                     return RedirectToAction("listusers", "administration");
                 }
 
