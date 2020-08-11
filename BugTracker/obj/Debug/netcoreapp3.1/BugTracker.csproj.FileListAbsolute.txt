@@ -783,3 +783,10 @@ C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\BugTr
 C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\BugTracker.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Account\ConfirmEmail.cshtml.g.cs
 C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\BugTracker.csprojAssemblyReference.cache
+C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Account\ForgotPassword.cshtml.g.cs
+C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Account\ForgotPasswordConfirmation.cshtml.g.cs
+C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Account\ResetPassword.cshtml.g.cs
+C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Account\ResetPasswordConfirmation.cshtml.g.cs
+C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Account\ChangePassword.cshtml.g.cs
+C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Account\ChangePasswordConfirmation.cshtml.g.cs
+C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Account\AccountLocked.cshtml.g.cs

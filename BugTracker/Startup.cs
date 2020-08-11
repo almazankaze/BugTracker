@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BugTracker.Models;
+using BugTracker.Security;
 using BugTracker.Utilities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -34,16 +35,33 @@ namespace BugTracker
                 options.Password.RequiredLength = 8;
                 options.Password.RequiredUniqueChars = 3;
                 options.Password.RequireNonAlphanumeric = true;
+
                 options.SignIn.RequireConfirmedAccount = true;
+
+                options.Tokens.EmailConfirmationTokenProvider = "CustomEmailConfirmation";
+
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
             })
             .AddEntityFrameworkStores<AppDbContext>()
-            .AddDefaultTokenProviders();
+            .AddDefaultTokenProviders()
+            .AddTokenProvider<CustomEmailConfirmationTokenProvider
+            <ApplicationUser>>("CustomEmailConfirmation");
+
+            // make token be valid for a certain time
+            services.Configure<DataProtectionTokenProviderOptions>(o => o.TokenLifespan = TimeSpan.FromHours(5));
+
+            // Changes token lifespan of just the Email Confirmation Token type
+            services.Configure<CustomEmailConfirmationTokenProviderOptions>(o =>
+                    o.TokenLifespan = TimeSpan.FromDays(3));
 
             services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>, MyUserClaimsPrincipalFactory>();
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddScoped<IReportRepository, SqlReportRepository>();
             services.AddScoped<INoteRepository, SqlNoteRepository>();
+
+            services.AddSingleton<DataProtectionPurposeStrings>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
