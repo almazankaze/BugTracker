@@ -58,9 +58,25 @@ namespace BugTracker.Controllers
                 return View("ReportNotFound", id);
             }
 
-            var model = noteRepository.GetAllNotes(bugReport.Id);
+            IssueDetailsViewModel model = new IssueDetailsViewModel
+            {
+                Id = bugReport.Id,
+                Category = bugReport.Category,
+                PostTime = bugReport.PostTime,
+                LastUpdate = bugReport.LastUpdate,
+                Reporter = bugReport.Reporter,
+                AssignedTo = bugReport.AssignedTo,
+                Priority = bugReport.Priority,
+                Severity = bugReport.Severity,
+                Status = bugReport.Status,
+                Resolution = bugReport.Resolution,
+                Summary = bugReport.Summary,
+                Description = bugReport.Description,
+                TeamOwner = bugReport.TeamOwner,
+                Notes = noteRepository.GetAllNotes(bugReport.Id)
+        };
 
-            return View(bugReport);
+            return View(model);
         }
 
         [HttpGet]
@@ -186,6 +202,7 @@ namespace BugTracker.Controllers
                     PostTime = bugReport.LastUpdate,
                     Description = model.Note.Replace("\n", "<br />"),
                     PostedBy = user.Id,
+                    PostedByUserName = user.Email.Substring(0, user.Email.IndexOf('@')),
                     PhotoPath = user.PhotoPath
                 };
 

@@ -1,4 +1,4 @@
-﻿@model BugReport
+﻿@model IssueDetailsViewModel
 
 @{
     ViewBag.Title = "Issue Details";
@@ -115,24 +115,71 @@
     </div>
 
     <!-- Note Section -->
-    <div class="card-group">
+    <div class="card">
 
-        <!-- Profile Info -->
-        <div class="card">
-            <div class="card-block">
-                <h4 class="card-title">Card 1</h4>
-                <p class="card-text">Text 1</p>
-            </div>
+        <!-- Header -->
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-primary">
+            <h6 class="m-0 font-weight-bold text-white">Issue Activity</h6>
         </div>
 
-        <!-- Note Description -->
-        <div class="card" style="flex-grow: 4">
-            <div class="card-block">
-                <h4 class="card-title">Card 2</h4>
-                <p class="card-text">Text 2</p>
-                <p class="card-text">More text 2</p>
-                <p class="card-text">More text 2</p>
-            </div>
+        <!-- Card Body -->
+        <div class="card-body">
+
+            @if (Model.Notes.Any())
+            {
+                @foreach (var note in Model.Notes)
+                {
+                    <div class="card-group">
+
+                        <!-- Profile Info -->
+                        <div class="card shadow bg-light">
+                            <div class="card-block">
+                                <div class="row" style="padding:20px">
+                                    <div class="col-md-4">
+
+                                        @if (note.PhotoPath == null)
+                                        {
+                                            <img src="\images\default-user.png" style="width:100px; height:auto" />
+                                        }
+                                        else
+                                        {
+                                            <img src="\images\@note.PhotoPath" style="width:100px; height:auto" />
+                                        }
+
+                                    </div>
+                                    <div class="col-md-7 offset-1">
+                                        <div>
+                                            <a asp-controller="account" asp-action="profile" asp-route-id="@note.PostedBy">@note.PostedByUserName</a>
+                                        </div>
+                                        <div>
+                                            <b>@note.PostTime</b>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Note Description -->
+                        <div class="card shadow bg-light" style="flex-grow: 3">
+                            <div class="card-block">
+                                <div style="padding:20px">
+                                    <p>
+                                        @note.Description
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br />
+                }
+            }
+            else
+            {
+                <h5 class="card-title text-center">
+                    No Activity
+                </h5>
+            }
         </div>
     </div>
 </div>
