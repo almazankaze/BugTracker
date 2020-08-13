@@ -21,6 +21,7 @@ namespace BugTracker.Controllers
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
         private readonly RoleManager<IdentityRole> roleManager;
+        private readonly IOrganizationRepo organizationRepo;
         private readonly IWebHostEnvironment hostingEnvironment;
         private readonly ILogger<AccountController> logger;
         private readonly IDataProtector protector;
@@ -29,12 +30,14 @@ namespace BugTracker.Controllers
             SignInManager<ApplicationUser> signInManager, RoleManager<IdentityRole> roleManager,
             IWebHostEnvironment hostingEnvironment, ILogger<AccountController> logger,
             IDataProtectionProvider dataProtectionProvider,
-            DataProtectionPurposeStrings dataProtectionPurposeStrings)
+            DataProtectionPurposeStrings dataProtectionPurposeStrings,
+            IOrganizationRepo organazationRepo)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.roleManager = roleManager;
             this.hostingEnvironment = hostingEnvironment;
+            this.organizationRepo = organazationRepo;
             this.logger = logger;
             this.protector = dataProtectionProvider.CreateProtector(
                 dataProtectionPurposeStrings.UserIdRouteValue);
@@ -73,6 +76,17 @@ namespace BugTracker.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                // create organization
+                Organization organization = new Organization
+                {
+                    Name = model.Organization,
+                    Created = DateTime.Now
+                };
+
+                // add organization to database
+                organization = organizationRepo.Add(organization);
+
                 // Copy data from RegisterViewModel to IdentityUser
                 var user = new ApplicationUser
                 {
@@ -81,7 +95,8 @@ namespace BugTracker.Controllers
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     Organization = model.Organization,
-                    TeamOwner = model.Email
+                    TeamOwner = model.Email,
+                    OrganizationId = organization.Id
                 };
 
                 // Store user data in AspNetUsers database table
@@ -438,6 +453,26 @@ namespace BugTracker.Controllers
             }
 
             return View(model);
+        }
+
+        // sees user profile with encryption for user id
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> ViewUser(string id)
+        {
+
+            string decryptedId = protector.Unprotect(id);
+
+            // get user
+            var user = await userManager.FindByIdAsync(decryptedId);
+
+            if (user == null)
+            {
+                Response.StatusCode = 404;
+                return View("AccountNotFound");
+            }
+
+            return View(user);
         }
 
     }

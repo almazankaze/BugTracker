@@ -8,6 +8,10 @@
   <ItemGroup>
     <Compile Remove="Migrations\20200709235021_AddReportTable.cs" />
     <Compile Remove="Migrations\20200709235021_AddReportTable.Designer.cs" />
+    <Compile Remove="Migrations\20200812234954_ADDTABLE_ORGANIZATION.cs" />
+    <Compile Remove="Migrations\20200812234954_ADDTABLE_ORGANIZATION.Designer.cs" />
+    <Compile Remove="Migrations\20200812235806_ADDCOL_Org_TOUSERS.cs" />
+    <Compile Remove="Migrations\20200812235806_ADDCOL_Org_TOUSERS.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

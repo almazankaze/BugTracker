@@ -219,7 +219,8 @@ namespace BugTracker.Controllers
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     Organization = loggedInUser.Organization,
-                    TeamOwner = loggedInUser.TeamOwner
+                    TeamOwner = loggedInUser.TeamOwner,
+                    OrganizationId = loggedInUser.OrganizationId
                 };
 
                 // Store user data in AspNetUsers database table

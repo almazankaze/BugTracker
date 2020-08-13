@@ -4,14 +4,16 @@ using BugTracker.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BugTracker.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200812235225_ADDTABLE_ORGANIZATION")]
+    partial class ADDTABLE_ORGANIZATION
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,9 +63,6 @@ namespace BugTracker.Migrations
                     b.Property<string>("Organization")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("OrganizationId")
-                        .HasColumnType("int");
-
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
@@ -98,8 +97,6 @@ namespace BugTracker.Migrations
                         .IsUnique()
                         .HasName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.HasIndex("OrganizationId");
 
                     b.ToTable("AspNetUsers");
                 });
@@ -343,15 +340,6 @@ namespace BugTracker.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("BugTracker.Models.ApplicationUser", b =>
-                {
-                    b.HasOne("BugTracker.Models.Organization", "Org")
-                        .WithMany()
-                        .HasForeignKey("OrganizationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("BugTracker.Models.ReportNote", b =>

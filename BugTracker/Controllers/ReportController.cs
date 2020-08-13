@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BugTracker.Models;
+using BugTracker.Security;
 using BugTracker.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace BugTracker.Controllers
 {
@@ -16,13 +19,20 @@ namespace BugTracker.Controllers
         private readonly IReportRepository reportRepository;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly INoteRepository noteRepository;
+        private readonly ILogger<AccountController> logger;
+        private readonly IDataProtector protector;
 
         public ReportController(IReportRepository reportRepository, UserManager<ApplicationUser> userManager,
-            INoteRepository noteRepository)
+            INoteRepository noteRepository, ILogger<AccountController> logger,
+            IDataProtectionProvider dataProtectionProvider,
+            DataProtectionPurposeStrings dataProtectionPurposeStrings)
         {
             this.reportRepository = reportRepository;
             this.userManager = userManager;
             this.noteRepository = noteRepository;
+            this.logger = logger;
+            this.protector = dataProtectionProvider.CreateProtector(
+                dataProtectionPurposeStrings.UserIdRouteValue);
         }
 
         [HttpGet]
@@ -45,9 +55,6 @@ namespace BugTracker.Controllers
         [HttpGet]
         public async Task<ViewResult> IssueDetails(int? id)
         {
-            // get logged in user
-            var user = await userManager.GetUserAsync(HttpContext.User);
-            ViewBag.teamOwner = user.TeamOwner;
 
             BugReport bugReport = reportRepository.GetBugReport(id.Value);
 
@@ -57,6 +64,10 @@ namespace BugTracker.Controllers
                 Response.StatusCode = 404;
                 return View("ReportNotFound", id);
             }
+
+            // get logged in user
+            var user = await userManager.GetUserAsync(HttpContext.User);
+            ViewBag.teamOwner = user.TeamOwner;
 
             IssueDetailsViewModel model = new IssueDetailsViewModel
             {
@@ -73,7 +84,13 @@ namespace BugTracker.Controllers
                 Summary = bugReport.Summary,
                 Description = bugReport.Description,
                 TeamOwner = bugReport.TeamOwner,
-                Notes = noteRepository.GetAllNotes(bugReport.Id)
+                Notes = noteRepository.GetAllNotes(bugReport.Id).Select
+                            (e =>
+                            {
+                                e.EncryptedUserId = protector.Protect(e.PostedBy);
+                                return e;
+                            })
+                    
         };
 
             return View(model);
@@ -165,6 +182,7 @@ namespace BugTracker.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Operations, Admin")]
         public async Task<IActionResult> Update(ReportUpdateViewModel model)
         {
 
@@ -213,6 +231,7 @@ namespace BugTracker.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult DeleteReport(BugReport model)
         {
             var report = reportRepository.Delete(model.Id);
@@ -223,7 +242,7 @@ namespace BugTracker.Controllers
                 return View("NotFound");
             }
 
-            return RedirectToAction("viewissues");
+            return RedirectToAction("viewreports");
         }
     }
 }

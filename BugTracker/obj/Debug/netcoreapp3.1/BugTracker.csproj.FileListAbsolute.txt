@@ -790,3 +790,4 @@ C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\Razor
 C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Account\ChangePasswordConfirmation.cshtml.g.cs
 C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Account\AccountLocked.cshtml.g.cs
 C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\BugTracker.csprojAssemblyReference.cache
+C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Account\ViewUser.cshtml.g.cs

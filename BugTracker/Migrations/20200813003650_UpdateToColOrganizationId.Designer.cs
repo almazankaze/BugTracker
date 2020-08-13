@@ -4,14 +4,16 @@ using BugTracker.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BugTracker.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200813003650_UpdateToColOrganizationId")]
+    partial class UpdateToColOrganizationId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,7 +63,7 @@ namespace BugTracker.Migrations
                     b.Property<string>("Organization")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("OrganizationId")
+                    b.Property<int?>("OrganizationId")
                         .HasColumnType("int");
 
                     b.Property<string>("PasswordHash")
@@ -349,9 +351,7 @@ namespace BugTracker.Migrations
                 {
                     b.HasOne("BugTracker.Models.Organization", "Org")
                         .WithMany()
-                        .HasForeignKey("OrganizationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("OrganizationId");
                 });
 
             modelBuilder.Entity("BugTracker.Models.ReportNote", b =>

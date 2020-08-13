@@ -70,7 +70,7 @@ namespace BugTracker.Models
 
         public IEnumerable<BugReport> GetBugsForReview(string teamOwner)
         {
-            return context.BugReports.Where(report => report.Status.Equals("Complete") && report.TeamOwner == teamOwner);
+            return context.BugReports.Where(report => report.Status.Equals("Complete") && report.Resolution.Equals("Open") && report.TeamOwner == teamOwner);
         }
 
         public IEnumerable<BugReport> GetAllReports()

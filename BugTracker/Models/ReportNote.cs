@@ -19,6 +19,8 @@ namespace BugTracker.Models
         public DateTime PostTime { get; set; }
         public string Description { get; set; }
         public string PostedBy { get; set; }
+        [NotMapped]
+        public string EncryptedUserId { get; set; }
         public string PostedByUserName { get; set; }
         public string PhotoPath { get; set; }
     }

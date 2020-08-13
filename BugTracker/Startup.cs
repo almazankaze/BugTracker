@@ -60,12 +60,14 @@ namespace BugTracker
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddScoped<IReportRepository, SqlReportRepository>();
             services.AddScoped<INoteRepository, SqlNoteRepository>();
+            services.AddScoped<IOrganizationRepo, SqlOrganizationRepo>();
 
             services.AddSingleton<DataProtectionPurposeStrings>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager,
+            IOrganizationRepo organizationRepo)
         {
             if (env.IsDevelopment())
             {
@@ -81,7 +83,8 @@ namespace BugTracker
 
             app.UseAuthentication();
 
-            MyIdentityDataInitializer.SeedData(userManager, roleManager);
+            // if you wanted to put in data before hand
+            // MyIdentityDataInitializer.SeedData(userManager, roleManager, organizationRepo);
 
             app.UseStaticFiles();
 

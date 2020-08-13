@@ -149,7 +149,7 @@
                                     </div>
                                     <div class="col-md-7 offset-1">
                                         <div>
-                                            <a asp-controller="account" asp-action="profile" asp-route-id="@note.PostedBy">@note.PostedByUserName</a>
+                                            <a asp-controller="account" asp-action="viewuser" asp-route-id="@note.EncryptedUserId">@note.PostedByUserName</a>
                                         </div>
                                         <div>
                                             <b>@note.PostTime</b>

@@ -9,10 +9,26 @@ namespace BugTracker.Utilities
 {
     public static class MyIdentityDataInitializer
     {
-        public static void SeedData(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+        public static void SeedData(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager,
+            IOrganizationRepo organizationManager)
         {
             SeedRoles(roleManager);
+            SeedOrganizations(organizationManager);
             SeedUsers(userManager);
+        }
+
+        public static void SeedOrganizations(IOrganizationRepo organizationRepo)
+        {
+            if(organizationRepo.GetOrganization(1) == null)
+            {
+                Organization organization = new Organization
+                {
+                    Name = "TestName",
+                    Created = DateTime.Now
+                };
+
+                organizationRepo.Add(organization);
+            }
         }
 
         public static void SeedUsers(UserManager<ApplicationUser> userManager)
@@ -26,6 +42,7 @@ namespace BugTracker.Utilities
                 user.LastName = "Almazan";
                 user.Organization = "Face";
                 user.TeamOwner = "firstuser@test.com";
+                user.OrganizationId = 1;
 
                 IdentityResult result = userManager.CreateAsync
                 (user, "1234_Test").Result;

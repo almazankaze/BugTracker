@@ -18,6 +18,10 @@ namespace BugTracker.Models
         public string TeamOwner { get; set; }
         public string PhotoPath { get; set; }
 
+        public int OrganizationId { get; set; }
+        [ForeignKey("OrganizationId")]
+        public Organization Org { get; set; }
+
         [NotMapped]
         public string EncryptedId { get; set; }
 

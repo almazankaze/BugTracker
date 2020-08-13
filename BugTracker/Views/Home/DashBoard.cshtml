@@ -51,8 +51,8 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Requests</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Resolution</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.NeedReview.Count()</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -123,6 +123,36 @@
                                         <th><a asp-controller="report" asp-action="issuedetails" asp-route-id="@report.Id">@report.Id</a></th>
                                         <th>@report.Severity</th>
                                         <th>@report.PostTime</th>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Needs Review Table -->
+                <div class="card shadow mb-4">
+                    <!-- Card Header -->
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Pending Resolution</h6>
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                        <table id="resolveTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Assigned</th>
+                                    <th>Last Update</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var report in Model.NeedReview)
+                                {
+                                    <tr>
+                                        <th><a asp-controller="report" asp-action="issuedetails" asp-route-id="@report.Id">@report.Id</a></th>
+                                        <th>@report.AssignedToUserName</th>
+                                        <th>@report.LastUpdate</th>
                                     </tr>
                                 }
                             </tbody>

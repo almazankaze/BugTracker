@@ -11,5 +11,9 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
+    $('#resolveTable').DataTable();
+});
+
+$(document).ready(function () {
     $('#newTable').DataTable();
 });
