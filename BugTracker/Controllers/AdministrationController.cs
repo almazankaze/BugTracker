@@ -16,15 +16,17 @@ namespace BugTracker.Controllers
     {
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly IProjectRepo projectRepo;
         private readonly IReportRepository reportRepository;
         private readonly ILogger<AccountController> logger;
 
         public AdministrationController(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager, 
-            IReportRepository reportRepository, ILogger<AccountController> logger)
+            IReportRepository reportRepository, ILogger<AccountController> logger, IProjectRepo projectRepo)
         {
             this.roleManager = roleManager;
             this.userManager = userManager;
             this.reportRepository = reportRepository;
+            this.projectRepo = projectRepo;
             this.logger = logger;
         }
 
@@ -384,6 +386,35 @@ namespace BugTracker.Controllers
             // update report in database
             reportRepository.Update(bugReport);
             return RedirectToAction("issueDetails", "report", new { id = model.Id });
+        }
+
+        [HttpGet]
+        public IActionResult CreateProject()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateProject(CreateProjectViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                // get logged in user
+                var user = await userManager.GetUserAsync(HttpContext.User);
+
+                Project project = new Project
+                {
+                    Name = model.Name,
+                    Description = model.Description.Replace("\n", "<br />"),
+                    Created = DateTime.Now,
+                    OrganizationId = user.OrganizationId
+                };
+
+                projectRepo.Add(project);
+                return RedirectToAction("dashboard", "home");
+            }
+
+            return View();
         }
     }
 }

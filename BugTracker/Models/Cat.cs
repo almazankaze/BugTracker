@@ -7,6 +7,7 @@ namespace BugTracker.Models
 {
     public enum Cat
     {
+        Bug,
         Registration,
         Login,
         Feature,

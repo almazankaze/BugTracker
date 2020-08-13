@@ -61,6 +61,7 @@ namespace BugTracker
             services.AddScoped<IReportRepository, SqlReportRepository>();
             services.AddScoped<INoteRepository, SqlNoteRepository>();
             services.AddScoped<IOrganizationRepo, SqlOrganizationRepo>();
+            services.AddScoped<IProjectRepo, SqlProjectRepo>();
 
             services.AddSingleton<DataProtectionPurposeStrings>();
         }

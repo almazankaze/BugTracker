@@ -17,6 +17,7 @@ namespace BugTracker.Models
         public DbSet<BugReport> BugReports { get; set; }
         public DbSet<ReportNote> ReportNotes { get; set; }
         public DbSet<Organization> Organizations { get; set; }
+        public DbSet<Project> Projects { get; set; }
 
         // add initial data
         protected override void OnModelCreating(ModelBuilder modelBuilder)

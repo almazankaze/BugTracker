@@ -1,0 +1,51 @@
+﻿@model CreateProjectViewModel
+
+@{
+    ViewBag.Title = "Create Project";
+}
+
+<!-- Begin Page Content -->
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Create Project</h1>
+        </div>
+
+        <!-- Begin Form-->
+        <div class="container" style="padding:20px;">
+            <form method="post">
+                <div class="form-group">
+
+                    <!-- Name Box -->
+                    <div class="form-group row">
+                        <div class="col-md-1">
+                            <b class="text-gray-800">Name</b>
+                        </div>
+                        <div class="col-10">
+                            <input asp-for="Name" class="form-control" maxlength="100" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!-- Description Box -->
+                    <div class="form-group row">
+                        <div class="col-md-1">
+                            <b class="text-gray-800">Description</b>
+                        </div>
+                        <div class="col-10">
+                            <textarea asp-for="Description" class="form-control" style="height:200px;"></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="form-group row">
+                        <div class="col-md-3 text-right">
+                            <button type="submit" class="btn btn-primary form-control" style="width:150px">Create</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>

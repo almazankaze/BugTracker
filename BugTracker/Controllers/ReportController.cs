@@ -19,25 +19,39 @@ namespace BugTracker.Controllers
         private readonly IReportRepository reportRepository;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly INoteRepository noteRepository;
+        private readonly IProjectRepo projectRepo;
         private readonly ILogger<AccountController> logger;
         private readonly IDataProtector protector;
 
         public ReportController(IReportRepository reportRepository, UserManager<ApplicationUser> userManager,
-            INoteRepository noteRepository, ILogger<AccountController> logger,
+            INoteRepository noteRepository, IProjectRepo projectRepo, ILogger<AccountController> logger,
             IDataProtectionProvider dataProtectionProvider,
             DataProtectionPurposeStrings dataProtectionPurposeStrings)
         {
             this.reportRepository = reportRepository;
             this.userManager = userManager;
             this.noteRepository = noteRepository;
+            this.projectRepo = projectRepo;
             this.logger = logger;
             this.protector = dataProtectionProvider.CreateProtector(
                 dataProtectionPurposeStrings.UserIdRouteValue);
         }
 
         [HttpGet]
-        public ViewResult CreateReport()
+        public async Task<ViewResult> CreateReport()
         {
+
+            // get logged in user
+            var user = await userManager.GetUserAsync(HttpContext.User);
+
+            if (projectRepo.GetProject(user.OrganizationId) == null)
+            {
+                ViewBag.ErrorTitle = $"Can't create bug report";
+                ViewBag.ErrorMessage = $"Cant create a report at this time, please ensure there is atleast 1 project created first.";
+
+                return View("Error");
+            }
+
             return View();
         }
 
