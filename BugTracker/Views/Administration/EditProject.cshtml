@@ -1,7 +1,7 @@
-﻿@model CreateProjectViewModel
+﻿@model EditProjectViewModel
 
 @{
-    ViewBag.Title = "Create Project";
+    ViewBag.Title = "Edit Project";
 }
 
 <!-- Begin Page Content -->
@@ -9,7 +9,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Create Project</h1>
+        <h1 class="h3 mb-0 text-gray-800">Edit Project</h1>
     </div>
 
     <!-- Begin Form-->
@@ -42,7 +42,8 @@
                 <!-- Buttons -->
                 <div class="form-group row">
                     <div class="col-md-3 text-right">
-                        <button type="submit" class="btn btn-primary form-control" style="width:150px">Create</button>
+                        <button type="submit" class="btn btn-primary form-control" style="width:150px">Update</button>
+                        <a asp-controller="administration" asp-action="projectlist" class="btn btn-primary" style="width:auto">Cancel</a>
                     </div>
                 </div>
             </div>

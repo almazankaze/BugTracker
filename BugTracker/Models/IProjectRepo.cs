@@ -14,5 +14,7 @@ namespace BugTracker.Models
         Project Add(Project project);
 
         Project Delete(int id);
+
+        Project Update(Project projectChanges);
     }
 }

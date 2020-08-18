@@ -43,5 +43,13 @@ namespace BugTracker.Models
         {
             return context.Projects.Find(id);
         }
+
+        public Project Update(Project projectChanges)
+        {
+            var project = context.Projects.Attach(projectChanges);
+            project.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            context.SaveChanges();
+            return projectChanges;
+        }
     }
 }

@@ -7,6 +7,7 @@ using BugTracker.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Logging;
 
 namespace BugTracker.Controllers
@@ -441,6 +442,58 @@ namespace BugTracker.Controllers
             }
 
             return RedirectToAction("ProjectList");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditProject(int id)
+        {
+
+            // get logged in user
+            var user = await userManager.GetUserAsync(HttpContext.User);
+
+            // get project
+            var project = projectRepo.GetProject(id);
+
+            // check if user is in same organization is project
+            if(user.OrganizationId != project.OrganizationId)
+            {
+                return View("NoAccess");
+            }
+
+            EditProjectViewModel model = new EditProjectViewModel
+            {
+                Id = project.Id,
+                Name = project.Name,
+                Description = project.Description
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult EditProject(EditProjectViewModel model)
+        {
+            if(ModelState.IsValid)
+            {
+                // get project
+                Project project = projectRepo.GetProject(model.Id);
+
+                if(project == null)
+                {
+                    ViewBag.ErrorMessage = $"Project with Id = {model.Id} cannot be found and was not updated";
+                    return View("NotFound");
+                }
+
+                project.Name = model.Name;
+                project.Description = model.Description.Replace("\n", "<br />");
+
+                // update project in database
+                projectRepo.Update(project);
+
+                return RedirectToAction("ProjectList");
+            }
+
+            return View();
         }
     }
 }
