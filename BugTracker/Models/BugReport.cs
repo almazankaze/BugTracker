@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -31,5 +32,9 @@ namespace BugTracker.Models
         public string Resolution { get; set; }
         public string Organization { get; set; }
         public string TeamOwner { get; set; }
+
+        public int ProjectId { get; set; }
+        [ForeignKey("ProjectId")]
+        public Project Project { get; set; }
     }
 }

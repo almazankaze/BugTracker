@@ -30,5 +30,8 @@ namespace BugTracker.ViewModels
         public string Resolution { get; set; }
         public string Organization { get; set; }
         public string TeamOwner { get; set; }
+
+        [Required]
+        public int Project { get; set; }
     }
 }

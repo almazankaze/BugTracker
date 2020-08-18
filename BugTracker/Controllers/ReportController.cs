@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 
 namespace BugTracker.Controllers
@@ -44,15 +45,17 @@ namespace BugTracker.Controllers
             // get logged in user
             var user = await userManager.GetUserAsync(HttpContext.User);
 
-            if (projectRepo.GetProject(user.OrganizationId) == null)
-            {
-                ViewBag.ErrorTitle = $"Can't create bug report";
-                ViewBag.ErrorMessage = $"Cant create a report at this time, please ensure there is atleast 1 project created first.";
+            ViewBag.Projects = new SelectList(projectRepo.GetAllProjects(user.OrganizationId).ToList(), "Id", "Name");
 
-                return View("Error");
+            if (ViewBag.Projects != null)
+            {
+                return View();
             }
 
-            return View();
+            ViewBag.ErrorTitle = $"Can't create bug report";
+            ViewBag.ErrorMessage = $"Cant create a report at this time, please ensure there is atleast 1 project created first.";
+
+            return View("Error");
         }
 
         [HttpGet]

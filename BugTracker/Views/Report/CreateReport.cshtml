@@ -54,9 +54,22 @@
                     </div>
                     <div class="col-md-3">
                         <select asp-for="Category" class="custom-select mr-sm-2" asp-items="Html.GetEnumSelectList<Cat>()">
-                            <option value="">Please Select</option>
+                            <option selected disabled value="">Please Select</option>
                         </select>
                         <span asp-validation-for="Category" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <!-- Projects -->
+                <div class="form-group row">
+                    <div class="col-md-1">
+                        <b class="text-gray-800">Project</b>
+                    </div>
+                    <div class="col-md-3">
+                        <select asp-for="Project" asp-items="ViewBag.Projects" class="custom-select mr-sm-2">
+                            <option selected disabled value="">Please Select</option>
+                        </select>
+                        <span asp-validation-for="Project" class="text-danger"></span>
                     </div>
                 </div>
 

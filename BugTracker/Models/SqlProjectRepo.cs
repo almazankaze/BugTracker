@@ -26,14 +26,14 @@ namespace BugTracker.Models
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Project> GetAllProjects(int OrgId)
+        public IEnumerable<Project> GetAllProjects(int orgId)
         {
-            throw new NotImplementedException();
+            return context.Projects.Where(proj => proj.OrganizationId == orgId);
         }
 
         public Project GetProject(int id)
         {
-            return context.Projects.FirstOrDefault(proj => proj.OrganizationId == id);
+            return context.Projects.Find(id);
         }
     }
 }
