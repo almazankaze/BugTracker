@@ -23,7 +23,15 @@ namespace BugTracker.Models
 
         public Project Delete(int id)
         {
-            throw new NotImplementedException();
+            Project project = context.Projects.Find(id);
+
+            if (project != null)
+            {
+                context.Projects.Remove(project);
+                context.SaveChanges();
+            }
+
+            return project;
         }
 
         public IEnumerable<Project> GetAllProjects(int orgId)

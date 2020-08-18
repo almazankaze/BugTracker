@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Project>
+
+@{
+    ViewBag.Title = "All Projects";
+}
+
+<div class="container">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Current Projects</h1>
+    </div>
+
+    @if (Model.Any())
+    {
+        <a asp-action="createproject" asp-controller="administration"
+           class="btn btn-primary mb-3" style="width:auto">
+            Add new project
+        </a>
+
+        foreach (var project in Model)
+        {
+            <div class="card mb-3">
+                <div class="card-header">
+                    @project.Name
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">@project.Description</h5>
+                </div>
+                <div class="card-footer">
+                    <form asp-action="DeleteProject" asp-route-id="@project.Id" method="post">
+
+                        <a asp-action="editproject" asp-controller="administration"
+                           asp-route-id="@project.Id" class="btn btn-primary">Edit</a>
+
+                        <span id="confirmDeleteSpan_@project.Id" style="display:none">
+                            <span>Are you sure you want to delete?</span>
+                            <button type="submit" class="btn btn-danger">Yes</button>
+                            <a href="#" class="btn btn-primary"
+                               onclick="confirmDelete('@project.Id', false)">No</a>
+                        </span>
+
+                        <span id="deleteSpan_@project.Id">
+                            <a href="#" class="btn btn-danger"
+                               onclick="confirmDelete('@project.Id', true)">Delete</a>
+                        </span>
+                    </form>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="card">
+            <div class="card-header">
+                No users created yet
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">
+                    Use the button below to create a project
+                </h5>
+                <a class="btn btn-primary" style="width:auto"
+                   asp-controller="administration" asp-action="createproject">
+                    Add new project
+                </a>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script src="~/js/CustomScript.js"></script>
+}

@@ -411,10 +411,36 @@ namespace BugTracker.Controllers
                 };
 
                 projectRepo.Add(project);
-                return RedirectToAction("dashboard", "home");
+                return RedirectToAction("ProjectList");
             }
 
             return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ProjectList()
+        {
+            // get logged in user
+            var user = await userManager.GetUserAsync(HttpContext.User);
+
+            // get all projects in organization
+            var projects = projectRepo.GetAllProjects(user.OrganizationId);
+
+            return View(projects);
+        }
+
+        [HttpPost]
+        public IActionResult DeleteProject(int id)
+        {
+            var project = projectRepo.Delete(id);
+
+            if (project == null)
+            {
+                ViewBag.ErrorMessage = $"Project with Id = {id} cannot be found";
+                return View("NotFound");
+            }
+
+            return RedirectToAction("ProjectList");
         }
     }
 }
