@@ -86,6 +86,9 @@ namespace BugTracker.Controllers
             var user = await userManager.GetUserAsync(HttpContext.User);
             ViewBag.teamOwner = user.TeamOwner;
 
+            // get project of this issue
+            var project = projectRepo.GetProject(bugReport.ProjectId);
+
             IssueDetailsViewModel model = new IssueDetailsViewModel
             {
                 Id = bugReport.Id,
@@ -101,6 +104,7 @@ namespace BugTracker.Controllers
                 Summary = bugReport.Summary,
                 Description = bugReport.Description,
                 TeamOwner = bugReport.TeamOwner,
+                ProjectName = project.Name,
                 Notes = noteRepository.GetAllNotes(bugReport.Id).Select
                             (e =>
                             {
@@ -167,11 +171,8 @@ namespace BugTracker.Controllers
 
             if (ModelState.IsValid)
             {
-                // get id of current logged in user
-                var userId = userManager.GetUserId(HttpContext.User);
-
-                // get info of the user
-                var user = await userManager.FindByIdAsync(userId);
+                // get logged in user
+                var user = await userManager.GetUserAsync(HttpContext.User);
 
                 BugReport newReport = new BugReport
                 {
@@ -187,7 +188,8 @@ namespace BugTracker.Controllers
                     Status = "Created",
                     Resolution = "Open",
                     Organization = user.Organization,
-                    TeamOwner = user.TeamOwner
+                    TeamOwner = user.TeamOwner,
+                    ProjectId = model.Project
                 };
 
                 // add new employee to database

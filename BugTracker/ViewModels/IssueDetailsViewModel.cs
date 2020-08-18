@@ -23,5 +23,6 @@ namespace BugTracker.ViewModels
         public string Summary { get; set; }
         public string Description { get; set; }
         public string TeamOwner { get; set; }
+        public string ProjectName { get; set; }
     }
 }
