@@ -1,6 +1,22 @@
-﻿<h3 class="text-danger">
-    Your account is locked, please try again after sometime or you may
-    <a asp-action="ForgotPassword" asp-controller="Account">
-        reset your password by clicking here
-    </a>
-</h3>
+﻿<div class="container-fluid">
+    <div class="row" style="padding-top:20px">
+        <div class="col d-flex justify-content-center">
+            <div class="card shadow align-items-center" style="padding-top:10px; width:40rem;">
+                <div class="text-center">
+                    <h1 class="text-danger" style="font-weight:700">Locked Account</h1>
+                    <h5 class="text-danger">
+                        Your account is now temporarily locked due to too many failed login attempts. You can contact the
+                        administrator or try again after sometime.
+                    </h5>
+                    <br />
+                    <br />
+                    <h5 class="text-danger">
+                        You may also
+                        <a asp-action="ForgotPassword" asp-controller="Account">click here</a>
+                        and receive an email containing instructions on how to unlock your account.
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
