@@ -778,9 +778,6 @@ C:\Users\almaz\Documents\Git\BugProject\BugTracker\bin\Debug\netcoreapp3.1\nlog.
 C:\Users\almaz\Documents\Git\BugProject\BugTracker\bin\Debug\netcoreapp3.1\NLog.dll
 C:\Users\almaz\Documents\Git\BugProject\BugTracker\bin\Debug\netcoreapp3.1\NLog.Extensions.Logging.dll
 C:\Users\almaz\Documents\Git\BugProject\BugTracker\bin\Debug\netcoreapp3.1\NLog.Web.AspNetCore.dll
-C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\BugTracker.csproj.CoreCompileInputs.cache
-C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\BugTracker.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\BugTracker.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Account\ConfirmEmail.cshtml.g.cs
 C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Account\ForgotPassword.cshtml.g.cs
 C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Account\ForgotPasswordConfirmation.cshtml.g.cs
@@ -794,3 +791,13 @@ C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\Razor
 C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Administration\CreateProject.cshtml.g.cs
 C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Administration\ProjectList.cshtml.g.cs
 C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Administration\EditProject.cshtml.g.cs
+C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\BugTracker.csproj.CoreCompileInputs.cache
+C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\BugTracker.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\almaz\Documents\Git\BugProject\BugTracker\obj\Debug\netcoreapp3.1\BugTracker.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\almaz\Documents\Git\BugProject\BugTracker\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\almaz\Documents\Git\BugProject\BugTracker\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+C:\Users\almaz\Documents\Git\BugProject\BugTracker\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+C:\Users\almaz\Documents\Git\BugProject\BugTracker\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\almaz\Documents\Git\BugProject\BugTracker\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+C:\Users\almaz\Documents\Git\BugProject\BugTracker\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\almaz\Documents\Git\BugProject\BugTracker\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll

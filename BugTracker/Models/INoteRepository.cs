@@ -14,5 +14,7 @@ namespace BugTracker.Models
         ReportNote Add(ReportNote note);
 
         ReportNote Delete(int id);
+
+        void UpdateAllWithUserEmail(string email, string photoPath); 
     }
 }

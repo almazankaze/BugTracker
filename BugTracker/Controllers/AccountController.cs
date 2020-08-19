@@ -23,6 +23,7 @@ namespace BugTracker.Controllers
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly IOrganizationRepo organizationRepo;
         private readonly IWebHostEnvironment hostingEnvironment;
+        private readonly INoteRepository noteRepository;
         private readonly ILogger<AccountController> logger;
         private readonly IDataProtector protector;
 
@@ -31,11 +32,12 @@ namespace BugTracker.Controllers
             IWebHostEnvironment hostingEnvironment, ILogger<AccountController> logger,
             IDataProtectionProvider dataProtectionProvider,
             DataProtectionPurposeStrings dataProtectionPurposeStrings,
-            IOrganizationRepo organazationRepo)
+            IOrganizationRepo organazationRepo, INoteRepository noteRepository)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.roleManager = roleManager;
+            this.noteRepository = noteRepository;
             this.hostingEnvironment = hostingEnvironment;
             this.organizationRepo = organazationRepo;
             this.logger = logger;
@@ -260,6 +262,10 @@ namespace BugTracker.Controllers
 
                 if (result.Succeeded)
                 {
+                    // update image path in reportnotes table for this user
+                    noteRepository.UpdateAllWithUserEmail(user.Email, user.PhotoPath);
+
+
                     await signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("dashboard", "home");
                 }

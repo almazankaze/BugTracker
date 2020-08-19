@@ -239,7 +239,7 @@ namespace BugTracker.Controllers
                     PostTime = bugReport.LastUpdate,
                     Description = model.Note.Replace("\n", "<br />"),
                     PostedBy = user.Id,
-                    PostedByUserName = user.Email.Substring(0, user.Email.IndexOf('@')),
+                    PostedByUserName = user.Email,
                     PhotoPath = user.PhotoPath
                 };
 
