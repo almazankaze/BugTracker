@@ -2,6 +2,36 @@
 
 @{
     ViewBag.Title = Model.UserName;
+    var PhotoPath = "~/images/" + (Model.PhotoPath ?? "default-user.png");
 }
 
+<div class="container-fluid">
+    <div style="padding-top:20px">
 
+        <!-- Basic Information -->
+        <div class="row">
+            <div class="col">
+                <div class="card shadow" style="padding:20px;">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-4">
+                                <img class="img-profile rounded-circle" src="@PhotoPath" style="width:250px; height:auto" asp-append-version="true" />
+                            </div>
+                            <div class="col">
+                                <h1 class="font-weight-bold">@Model.FirstName @Model.LastName</h1>
+                                <h5>
+                                    <a href="#">@Model.Email </a>
+                                    - Admin for @Model.Organization
+                                </h5>
+                                <br />
+                                <h5>About me:</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
