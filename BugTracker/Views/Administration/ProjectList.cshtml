@@ -9,32 +9,37 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Current Projects</h1>
+        <a asp-action="createproject" asp-controller="administration"
+           class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm"></i> Add Project</a>
     </div>
+
+    <hr />
+
 
     @if (Model.Any())
     {
-        <a asp-action="createproject" asp-controller="administration"
-           class="btn btn-primary mb-3" style="width:auto">
-            Add new project
-        </a>
-
         foreach (var project in Model)
         {
-            <div class="card mb-3">
-                <div class="card-header">
-                    @project.Name Date Created: @project.Created
+            <div class="card shadow m-3">
+                <div class="card-header d-lg-flex justify-content-between align-items-center">
+                    <h4 class="font-weight-bold text-primary">@project.Name</h4>
+                    <h5 class="font-weight-bold text-primary">@project.Created</h5>
                 </div>
+
                 <div class="card-body">
                     <h5 class="card-title">@project.Description</h5>
                 </div>
+
                 <div class="card-footer">
                     <form asp-action="DeleteProject" asp-route-id="@project.Id" method="post">
 
-                        <a asp-action="editproject" asp-controller="administration"
-                           asp-route-id="@project.Id" class="btn btn-primary">Edit</a>
+                        <span id="profileSpan_@project.Id" style="">
+                            <a asp-action="editproject" asp-controller="administration"
+                                asp-route-id="@project.Id" class="btn btn-primary" style="width:auto"><i class="fas fa-pen fa-fw"></i> Edit</a>
+                        </span>
 
                         <span id="confirmDeleteSpan_@project.Id" style="display:none">
-                            <span>Are you sure you want to delete?</span>
+                            <span>Are you sure?</span>
                             <button type="submit" class="btn btn-danger">Yes</button>
                             <a href="#" class="btn btn-primary"
                                onclick="confirmDelete('@project.Id', false)">No</a>
@@ -42,7 +47,7 @@
 
                         <span id="deleteSpan_@project.Id">
                             <a href="#" class="btn btn-danger"
-                               onclick="confirmDelete('@project.Id', true)">Delete</a>
+                               onclick="confirmDelete('@project.Id', true)"><i class="fas fa-trash fa-fw" style="width:auto"></i> Delete</a>
                         </span>
                     </form>
                 </div>
@@ -51,18 +56,14 @@
     }
     else
     {
-        <div class="card">
+        <div class="card shadow">
             <div class="card-header">
-                No users created yet
+                <h4 class="font-weight-bold text-primary">No Projects</h4>
             </div>
             <div class="card-body">
                 <h5 class="card-title">
-                    Use the button below to create a project
+                    Use the "Add Project" button to add a project
                 </h5>
-                <a class="btn btn-primary" style="width:auto"
-                   asp-controller="administration" asp-action="createproject">
-                    Add new project
-                </a>
             </div>
         </div>
     }

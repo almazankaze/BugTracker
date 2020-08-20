@@ -24,11 +24,11 @@
 
             <div class="card shadow m-3" style="min-width: 18rem; max-width: 30.5%;">
                 <div class="card-header">
-                    <h3>@user.FirstName @user.LastName</h3>
+                    <h4 class="font-weight-bold text-primary">@user.FirstName @user.LastName</h4>
                 </div>
 
                 <div class="text-center" style="height:250px">
-                <img class="img-profile rounded-circle" src="@PhotoPath" style="width:200px; height:auto; padding-top:20px" asp-append-version="true" />
+                    <img class="img-profile rounded-circle" src="@PhotoPath" style="width:200px; height:auto; padding-top:20px" asp-append-version="true" />
                 </div>
 
                 <div class="card-footer text-center">
@@ -36,7 +36,7 @@
 
                         <span id="profileSpan_@user.Id" style="">
                             <a asp-action="Profile" asp-controller="Account"
-                               asp-route-id="@user.Id" class="btn btn-primary"><i class="fas fa-user fa-fw"></i> Profile</a>
+                               asp-route-id="@user.Id" class="btn btn-primary" style="width:auto"><i class="fas fa-user fa-fw"></i> Profile</a>
                         </span>
 
                         <span id="confirmDeleteSpan_@user.Id" style="display:none">
@@ -48,7 +48,7 @@
 
                         <span id="deleteSpan_@user.Id">
                             <a href="#" class="btn btn-danger"
-                               onclick="confirmDelete('@user.Id', true)"><i class="fas fa-trash fa-lg"></i> Delete</a>
+                               onclick="confirmDelete('@user.Id', true)" style="width:auto"><i class="fas fa-trash fa-fw"></i> Delete</a>
                         </span>
                     </form>
                 </div>
@@ -58,13 +58,13 @@
     }
     else
     {
-        <div class="card">
+        <div class="card shadow">
             <div class="card-header">
-                No users created yet
+                <h4 class="font-weight-bold text-primary">No Team</h4>
             </div>
             <div class="card-body">
                 <h5 class="card-title">
-                    Use the add user button to create a user
+                    Use the "Add User" button to add a teammate
                 </h5>
             </div>
         </div>

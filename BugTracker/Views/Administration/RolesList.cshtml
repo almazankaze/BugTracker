@@ -10,6 +10,8 @@
         <h1 class="h3 mb-0 text-gray-800">Current Roles</h1>
     </div>
 
+    <hr />
+
     <div class="row">
 
         <!-- Admin Card-->
@@ -17,13 +19,13 @@
             <div class="card shadow mb-3">
 
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Admin</h6>
+                    <h4 class="m-0 font-weight-bold text-primary">Admin</h4>
                 </div>
 
                 <div class="card-body">
                     @foreach (var adminUser in Model.AdminUsers)
                     {
-                        <h5 class="card-title">@adminUser.FirstName @adminUser.LastName</h5>
+                        <h5 class="card-title font-weight-bold">@adminUser.FirstName @adminUser.LastName</h5>
                     }
                 </div>
 
@@ -41,13 +43,13 @@
             <div class="card shadow mb-3">
 
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Operations</h6>
+                    <h4 class="m-0 font-weight-bold text-primary">Operations</h4>
                 </div>
 
                 <div class="card-body">
                     @foreach (var opUser in Model.OpUsers)
                     {
-                        <h5 class="card-title">@opUser.FirstName @opUser.LastName</h5>
+                        <h5 class="card-title font-weight-bold">@opUser.FirstName @opUser.LastName</h5>
                     }
                 </div>
 
