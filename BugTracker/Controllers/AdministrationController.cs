@@ -288,13 +288,13 @@ namespace BugTracker.Controllers
             // store id of report
             ViewBag.reportId = id;
 
-            // get id of current logged in user
-            var userId = userManager.GetUserId(HttpContext.User);
+            // get report
+            BugReport report = reportRepository.GetBugReport(id);
 
-            // get info of the user
-            var loggedInUser = await userManager.FindByIdAsync(userId);
+            // get logged in user
+            var loggedInUser = await userManager.GetUserAsync(HttpContext.User);
 
-            var users = userManager.Users.Where(user => user.UserName != loggedInUser.UserName && user.Organization == loggedInUser.Organization && user.TeamOwner == loggedInUser.UserName).ToList();
+            var users = userManager.Users.Where(user => user.UserName != loggedInUser.UserName && user.OrganizationId == loggedInUser.OrganizationId).ToList();
 
             var model = new UserAssignViewModel();
 
@@ -305,6 +305,15 @@ namespace BugTracker.Controllers
                     UserId = user.Id,
                     UserName = user.UserName
                 };
+
+                if(report.AssignedToUserName.Equals(user.Email))
+                {
+                    teamMate.IsSelected = true;
+                }
+                else
+                {
+                    teamMate.IsSelected = false;
+                }
 
                 model.TeamMates.Add(teamMate);
             }

@@ -8,26 +8,34 @@
 <div class="container-fluid">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Assign Users To A Report</h1>
+        <h1 class="h3 mb-0 text-gray-800">Assign User To A Report</h1>
     </div>
 
     <hr />
 
     <form method="post">
         <div class="card shadow">
-            <div class="card-header">
-                <h2>Add or remove users from this report</h2>
-            </div>
             <div class="card-body">
-                @for (int i = 0; i < Model.TeamMates.Count; i++)
-                {
-                    <div class="m-1">
+                <div class="row">
+                    @for (int i = 0; i < Model.TeamMates.Count; i++)
+                    {
+                    <div class="col-lg-6">
                         <input type="hidden" asp-for="@Model.TeamMates[i].UserId" />
                         <input type="hidden" asp-for="@Model.TeamMates[i].UserName" />
-                        <input asp-for="@Model.Selected" type="radio" value="@Model.TeamMates[i].UserId" />
-                        <label asp-for="@Model.Selected">@Model.TeamMates[i].UserName</label>
+
+                        @if (Model.TeamMates[i].IsSelected)
+                        {
+                            <input id="radioFor_@Model.TeamMates[i].UserName" asp-for="@Model.Selected" type="radio" value="@Model.TeamMates[i].UserId" checked />
+                        }
+                        else
+                        {
+                            <input id="radioFor_@Model.TeamMates[i].UserName" asp-for="@Model.Selected" type="radio" value="@Model.TeamMates[i].UserId" />
+                        }
+
+                        <label class="h5 font-weight-bold" for="radioFor_@Model.TeamMates[i].UserName" asp-for="@Model.Selected">@Model.TeamMates[i].UserName</label>
                     </div>
-                }
+                    }
+                </div>
                 <span asp-validation-for="@Model.Selected" class="text-danger"></span>
             </div>
             <div class="card-footer">
