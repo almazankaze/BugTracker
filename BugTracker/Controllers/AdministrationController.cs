@@ -17,15 +17,18 @@ namespace BugTracker.Controllers
     {
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly INoteRepository noteRepository;
         private readonly IProjectRepo projectRepo;
         private readonly IReportRepository reportRepository;
         private readonly ILogger<AccountController> logger;
 
         public AdministrationController(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager, 
-            IReportRepository reportRepository, ILogger<AccountController> logger, IProjectRepo projectRepo)
+            IReportRepository reportRepository, ILogger<AccountController> logger, IProjectRepo projectRepo,
+            INoteRepository noteRepository)
         {
             this.roleManager = roleManager;
             this.userManager = userManager;
+            this.noteRepository = noteRepository;
             this.reportRepository = reportRepository;
             this.projectRepo = projectRepo;
             this.logger = logger;
@@ -383,7 +386,7 @@ namespace BugTracker.Controllers
         }
 
         [HttpPost]
-        public IActionResult OpenBug(ReopenViewModel model)
+        public async Task<IActionResult> OpenBug(ReopenViewModel model)
         {
             BugReport bugReport = reportRepository.GetBugReport(model.Id);
             bugReport.Status = "Created";
@@ -392,6 +395,23 @@ namespace BugTracker.Controllers
 
             // update report in database
             reportRepository.Update(bugReport);
+
+            // get logged in user
+            var user = await userManager.GetUserAsync(HttpContext.User);
+
+            // create new note and add to database
+            ReportNote reportNote = new ReportNote
+            {
+                ReportId = bugReport.Id,
+                PostTime = bugReport.LastUpdate,
+                Description = model.Note.Replace("\n", "<br />"),
+                PostedBy = user.Id,
+                PostedByUserName = user.Email,
+                PhotoPath = user.PhotoPath
+            };
+
+            noteRepository.Add(reportNote);
+
             return RedirectToAction("issueDetails", "report", new { id = model.Id });
         }
 
