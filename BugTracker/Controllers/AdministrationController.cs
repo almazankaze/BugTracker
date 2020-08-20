@@ -82,14 +82,11 @@ namespace BugTracker.Controllers
         [HttpGet]
         public async Task<IActionResult> ListUsers()
         {
-            // get id of current logged in user
-            var userId = userManager.GetUserId(HttpContext.User);
-
-            // get info of the user
-            var loggedInUser = await userManager.FindByIdAsync(userId);
+            // get logged in user
+            var loggedInUser = await userManager.GetUserAsync(HttpContext.User);
 
             // only retrieve users of the same team
-            var users = userManager.Users.Where(user => user.UserName != loggedInUser.UserName && user.Organization == loggedInUser.Organization && user.TeamOwner == loggedInUser.TeamOwner).ToList();
+            var users = userManager.Users.Where(user => user.UserName != loggedInUser.UserName && user.OrganizationId == loggedInUser.OrganizationId).OrderBy(user => user.LastName).ToList();
             return View(users);
         }
 

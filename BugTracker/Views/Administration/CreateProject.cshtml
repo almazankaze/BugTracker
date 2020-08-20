@@ -12,40 +12,32 @@
         <h1 class="h3 mb-0 text-gray-800">Create Project</h1>
     </div>
 
+    <hr />
+
+
     <!-- Begin Form-->
-    <div class="container" style="padding:20px;">
-        <form method="post">
-            <div class="form-group">
+    <form method="post">
 
-                <!-- Name Box -->
-                <div class="form-group row">
-                    <div class="col-md-1">
-                        <b class="text-gray-800">Name</b>
-                    </div>
-                    <div class="col-10">
-                        <input asp-for="Name" class="form-control" maxlength="100" />
-                        <span asp-validation-for="Name" class="text-danger"></span>
-                    </div>
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-8">
+                <div class="form-group">
+                    <label class="h6 font-weight-bold" asp-for="Name"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
 
-                <!-- Description Box -->
-                <div class="form-group row">
-                    <div class="col-md-1">
-                        <b class="text-gray-800">Description</b>
-                    </div>
-                    <div class="col-10">
-                        <textarea asp-for="Description" class="form-control" style="height:200px;"></textarea>
-                        <span asp-validation-for="Description" class="text-danger"></span>
-                    </div>
+                <div class="form-group">
+                    <label class="h6 font-weight-bold" asp-for="Description"></label>
+                    <textarea asp-for="Description" class="form-control" style="height:200px;"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
 
-                <!-- Buttons -->
-                <div class="form-group row">
-                    <div class="col-md-3 text-right">
-                        <button type="submit" class="btn btn-primary form-control" style="width:150px">Create</button>
-                    </div>
+                <div style="padding-top:20px; text-align:center">
+                    <button type="submit" class="btn btn-primary" style="width:100px">Create</button>
+                    <a asp-controller="administration" asp-action="projectlist" class="btn btn-secondary" style="width:100px">Cancel</a>
                 </div>
             </div>
-        </form>
-    </div>
+        </div>
+
+    </form>
 </div>
