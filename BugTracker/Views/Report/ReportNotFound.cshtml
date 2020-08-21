@@ -4,10 +4,12 @@
     ViewBag.Title = "404 Error";
 }
 
-<div class="alert alert-danger mt-1 mb-1">
-    <h4>404 Not Found Error : </h4>
-    <hr />
-    <h5>
-        Report with Id @Model cannot be found
-    </h5>
+<div class="container-fluid">
+    <div style="padding-top:20px">
+        <div class="card shadow" style="padding:20px;">
+            <h1 style="font-weight:700">Sorry, that page does not exist</h1>
+            <br />
+            <h5>Report with Id @Model does not exist, try searching for another.</h5>
+        </div>
+    </div>
 </div>

@@ -9,6 +9,9 @@ namespace BugTracker.ViewModels
     public class ReportUpdateViewModel : ReportCreateViewModel
     {
         public int Id { get; set; }
+
+        [Required(ErrorMessage = "A note is required for updating")]
+        [Display(Name = "Comment")]
         public string Note { get; set; }
     }
 }

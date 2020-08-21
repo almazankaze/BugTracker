@@ -12,97 +12,97 @@
         <h1 class="h3 mb-0 text-gray-800">Create Report</h1>
     </div>
 
+    <hr />
+
     <!-- Begin Form-->
-    <div class="container" style="padding:20px;">
-        <form method="post">
-            <div class="form-group">
+    <form method="post">
+        <div class="form-group">
 
-                <!-- Severity Radio Buttons-->
-                <div class="form-group row">
-                    <div class=" col-md-1">
-                        <b class="text-gray-800">Severity</b>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="custom-control custom-radio">
-                            <input asp-for="Severity" type="radio" id="trivial" value="Trivial" class="custom-control-input" checked="checked">
-                            <label class="custom-control-label" for="trivial">Trivial</label>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="custom-control custom-radio">
-                            <input asp-for="Severity" type="radio" id="minor" value="Minor" class="custom-control-input">
-                            <label class="custom-control-label" for="minor">Minor</label>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="custom-control custom-radio">
-                            <input asp-for="Severity" type="radio" id="major" value="Major" class="custom-control-input">
-                            <label class="custom-control-label" for="major">Major</label>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="custom-control custom-radio">
-                            <input asp-for="Severity" type="radio" id="crash" value="Crash" class="custom-control-input">
-                            <label class="custom-control-label" for="crash">Crash</label>
-                        </div>
+            <!-- Severity Radio Buttons-->
+            <div class="form-group row">
+                <div class=" col-md-2">
+                    <b class="text-gray-800">Severity</b>
+                </div>
+                <div class="col-md-2">
+                    <div class="custom-control custom-radio">
+                        <input asp-for="Severity" type="radio" id="trivial" value="Trivial" class="custom-control-input" checked="checked">
+                        <label class="custom-control-label" for="trivial">Trivial</label>
                     </div>
                 </div>
-
-                <div class="form-group row">
-                    <div class="col-md-1">
-                        <b class="text-gray-800">Category</b>
-                    </div>
-                    <div class="col-md-3">
-                        <select asp-for="Category" class="custom-select mr-sm-2" asp-items="Html.GetEnumSelectList<Cat>()">
-                            <option selected disabled value="">Please Select</option>
-                        </select>
-                        <span asp-validation-for="Category" class="text-danger"></span>
+                <div class="col-md-2">
+                    <div class="custom-control custom-radio">
+                        <input asp-for="Severity" type="radio" id="minor" value="Minor" class="custom-control-input">
+                        <label class="custom-control-label" for="minor">Minor</label>
                     </div>
                 </div>
-
-                <!-- Projects -->
-                <div class="form-group row">
-                    <div class="col-md-1">
-                        <b class="text-gray-800">Project</b>
-                    </div>
-                    <div class="col-md-3">
-                        <select asp-for="Project" asp-items="ViewBag.Projects" class="custom-select mr-sm-2">
-                            <option selected disabled value="">Please Select</option>
-                        </select>
-                        <span asp-validation-for="Project" class="text-danger"></span>
+                <div class="col-md-2">
+                    <div class="custom-control custom-radio">
+                        <input asp-for="Severity" type="radio" id="major" value="Major" class="custom-control-input">
+                        <label class="custom-control-label" for="major">Major</label>
                     </div>
                 </div>
-
-                <!-- Summary Box -->
-                <div class="form-group row">
-                    <div class="col-md-1">
-                        <b class="text-gray-800">Summary</b>
-                    </div>
-                    <div class="col-10">
-                        <input asp-for="Summary" class="form-control" maxlength="100" />
-                        <span asp-validation-for="Summary" class="text-danger"></span>
-                    </div>
-                </div>
-
-                <!-- Description Box -->
-                <div class="form-group row">
-                    <div class="col-md-1">
-                        <b class="text-gray-800">Details</b>
-                    </div>
-                    <div class="col-10">
-                        <textarea asp-for="Description" class="form-control" style="height:200px;"></textarea>
-                        <span asp-validation-for="Description" class="text-danger"></span>
-                    </div>
-                </div>
-
-                <!-- Buttons -->
-                <div class="form-group row">
-                    <div class="col-md-3 text-right">
-                        <button type="submit" class="btn btn-primary form-control" style="width:150px">Create</button>
+                <div class="col-md-2">
+                    <div class="custom-control custom-radio">
+                        <input asp-for="Severity" type="radio" id="crash" value="Crash" class="custom-control-input">
+                        <label class="custom-control-label" for="crash">Crash</label>
                     </div>
                 </div>
             </div>
-        </form>
-    </div>
+
+            <div class="form-group row">
+                <div class="col-md-2">
+                    <b class="text-gray-800">Category</b>
+                </div>
+                <div class="col-md-4">
+                    <select asp-for="Category" class="custom-select mr-sm-2" asp-items="Html.GetEnumSelectList<Cat>()">
+                        <option selected disabled value="">Please Select</option>
+                    </select>
+                    <span asp-validation-for="Category" class="text-danger"></span>
+                </div>
+            </div>
+
+            <!-- Projects -->
+            <div class="form-group row">
+                <div class="col-md-2">
+                    <b class="text-gray-800">Project</b>
+                </div>
+                <div class="col-md-4">
+                    <select asp-for="Project" asp-items="ViewBag.Projects" class="custom-select mr-sm-2">
+                        <option selected disabled value="">Please Select</option>
+                    </select>
+                    <span asp-validation-for="Project" class="text-danger"></span>
+                </div>
+            </div>
+
+            <!-- Summary Box -->
+            <div class="form-group row">
+                <div class="col-md-2">
+                    <b class="text-gray-800">Summary</b>
+                </div>
+                <div class="col-md-6">
+                    <input asp-for="Summary" class="form-control" maxlength="100" />
+                    <span asp-validation-for="Summary" class="text-danger"></span>
+                </div>
+            </div>
+
+            <!-- Description Box -->
+            <div class="form-group row">
+                <div class="col-md-2">
+                    <b class="text-gray-800">Details</b>
+                </div>
+                <div class="col-md-8">
+                    <textarea asp-for="Description" class="form-control" style="height:200px;"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+            </div>
+
+            <!-- Buttons -->
+            <div style="padding-top:20px; text-align:center">
+                <button type="submit" class="btn btn-primary">Create</button>
+            </div>
+            
+        </div>
+    </form>
+    
 </div>
 
