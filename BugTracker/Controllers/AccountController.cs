@@ -167,7 +167,7 @@ namespace BugTracker.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("index", "home");
+                        return RedirectToAction("dashboard", "home");
                     }
                 }
 

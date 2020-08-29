@@ -47,6 +47,8 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
+        @if (signInManager.IsSignedIn(User)) { 
+
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
@@ -57,36 +59,31 @@
                 <div class="sidebar-brand-text mx-3">Bug Control</div>
             </a>
 
-            <!-- Only display this if user is logged in -->
-            @if (signInManager.IsSignedIn(User))
-            {
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
 
-                <!-- Divider -->
-                <hr class="sidebar-divider my-0">
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" asp-controller="home" asp-action="dashboard">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
 
-                <!-- Nav Item - Dashboard -->
-                <li class="nav-item active">
-                    <a class="nav-link" asp-controller="home" asp-action="dashboard">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
 
-                <!-- Divider -->
-                <hr class="sidebar-divider">
+            <!-- Nav Item - View Reports -->
+            <li class="nav-item">
 
-                <!-- Nav Item - View Reports -->
-                <li class="nav-item">
-
-                    <a class="nav-link" asp-controller="report" asp-action="viewReports">
-                        <i class="fas fa-fw fa-folder"></i>
-                        <span>View Reports</span>
-                    </a>
-                </li>
-            }
+                <a class="nav-link" asp-controller="report" asp-action="viewReports">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>View Reports</span>
+                </a>
+            </li>
 
             <!-- Only create this link if user is an admin -->
-            @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+            @if (User.IsInRole("Admin"))
             {
 
                 <!-- Nav Item - Pages Collapse Menu -->
@@ -132,6 +129,7 @@
             }
 
         </ul>
+        }
         <!-- End of Sidebar -->
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">

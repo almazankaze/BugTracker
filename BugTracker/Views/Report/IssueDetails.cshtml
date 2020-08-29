@@ -8,6 +8,110 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
+    @if (teamOwner == Model.TeamOwner)
+    {
+        <!-- Only show these buttons to Admin-->
+        @if (User.IsInRole("Admin"))
+        {
+            <div class="row">
+
+                <!-- If report is closed -->
+                @if (Model.Resolution == "Closed")
+                {
+                    <div style="padding:5px">
+                        <a asp-controller="administration" asp-action="openbug" asp-route-id="@Model.Id" class=" d-sm-inline-block btn btn-sm btn-primary shadow-sm">Open</a>
+                    </div>
+                }
+                else
+                {
+                    <div style="padding:5px">
+                        <a asp-controller="report" asp-action="update" asp-route-id="@Model.Id" class=" d-sm-inline-block btn btn-sm btn-primary shadow-sm">Update</a>
+                    </div>
+                }
+
+                <div style="padding:5px">
+                    <button type="button" class="d-sm-inline-block btn btn-sm btn-danger shadow-sm" data-toggle="modal" data-target="#myModal">Delete</button>
+                </div>
+            </div>
+
+            <br />
+        }
+
+        <!-- Only show to Operations -->
+        @if (User.IsInRole("Operations"))
+        {
+            @if (Model.Resolution == "Open")
+            {
+                <div class="row">
+                    <div style="padding:5px">
+                        <a asp-controller="report" asp-action="update" asp-route-id="@Model.Id" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm">Update</a>
+                    </div>
+                </div>
+
+                <br />
+            }
+        }
+    }
+
+    <!-- Details and People Section -->
+    <div class="row">
+
+        <!-- Details -->
+        <div class="col-md-8">
+
+            <h1 class="h3 mb-0 text-gray-800">Details</h1>
+            <hr />
+
+            <div class="row">
+
+                <div class="col-lg">
+                    <h5>Id:</h5>
+                    <h5>Project:</h5>
+                    <h5>Category:</h5>
+                    <h5>Priority:</h5>
+                    <h5>Severity:</h5>
+                </div>
+
+                <div class="col-lg">
+                    <h5>@Model.Id</h5>
+                    <h5>@Model.ProjectName</h5>
+                    <h5>@Model.Category</h5>
+                    <h5>@Model.Priority</h5>
+                    <h5>@Model.Severity</h5>
+                </div>
+
+                <div class="col-lg">
+                    <h5>Status:</h5>
+                    <h5>Resolution:</h5>
+                </div>
+
+                <div class="col-lg">
+                    <h5>@Model.Status</h5>
+                    <h5>@Model.Resolution</h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- People -->
+        <div class="col-md-4">
+
+            <h1 class="h3 mb-0 text-gray-800">People</h1>
+            <hr />
+
+            <div class="row">
+
+                <div class="col-md-2">
+                    <h4>Id:</h4>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Issue Details</h1>
